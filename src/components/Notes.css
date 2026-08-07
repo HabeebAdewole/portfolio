@@ -1,0 +1,71 @@
+.notes li,
+.notes li > a {
+  display: grid;
+  grid-template-columns: 3.25rem 1fr auto;
+  gap: 0 var(--s5);
+  align-items: baseline;
+}
+
+.notes li {
+  border-bottom: 1px solid var(--hair);
+  padding: 18px 0;
+}
+
+/* a published row is one target, so the padding moves onto the anchor */
+.notes li.live {
+  padding: 0;
+  display: block;
+}
+.notes li.live > a {
+  padding: 18px 0;
+  text-decoration: none;
+  color: inherit;
+  min-height: 44px;
+  transition: background-color 0.16s ease;
+}
+.notes li.live > a:hover,
+.notes li.live > a:focus-visible {
+  background: var(--panel);
+}
+.notes li.live > a:hover .ttl,
+.notes li.live > a:focus-visible .ttl {
+  color: var(--mark);
+}
+
+.notes .when {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.notes .ttl {
+  font-size: 1.0625rem;
+  color: var(--muted);
+}
+.notes li.live .ttl {
+  color: var(--ink);
+}
+
+.notes .go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.notes .go.pend {
+  border: 1px dashed var(--rule);
+  padding: 3px 8px;
+}
+
+@media (max-width: 640px) {
+  .notes li,
+  .notes li > a {
+    grid-template-columns: 1fr auto;
+    gap: 4px var(--s4);
+  }
+  .notes .when {
+    grid-column: 1 / -1;
+  }
+}

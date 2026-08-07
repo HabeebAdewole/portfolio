@@ -1,0 +1,115 @@
+/* ============================================================================
+   TOKENS — ported verbatim from the v3 mockup, which was contrast-verified in
+   a browser. Do not eyeball-adjust these values; re-measure if you change one.
+
+   Verified ratios (light / dark):
+     --muted     on --ground   5.53 / 5.82   (AA text, needs 4.5)
+     --data      on --ground   5.82 / 8.56   (AA text)
+     --mark      on --ground   6.21 / 7.59   (AA text)
+     --edge      on --ground   3.06 / 3.09   (1.4.11 control boundary, needs 3.0)
+     --mark-soft on --ground   3.57 / 3.12   (1.4.11 control boundary)
+     --bar-dim   on --sunk     3.09 / 3.12   (a losing bar must still be visible)
+
+   Colour discipline — two accents, two jobs, no drift:
+     --mark  blue   interactive only, plus the leading value in a comparison
+     --data  ochre  a measured figure inline in prose only
+   Everything else is neutral.
+   ============================================================================ */
+
+:root {
+  --ground: #e6e8e3;
+  --panel: #eff1ec;
+  --sunk: #dde0da;
+  --ink: #16191a;
+  --muted: #575c58;
+  --rule: #b9beb7;
+  --hair: #d2d6cf;
+  --grid: #dce0d9;
+  --mark: #1f4fa8;
+  --mark-soft: #5878b5;
+  --edge: #7f857e;
+  --data: #7a4e0b;
+  --bar: #1f4fa8;
+  --bar-dim: #737a72;
+  --focus: #1f4fa8;
+
+  /* type */
+  --mono: Consolas, 'SF Mono', 'DejaVu Sans Mono', 'Liberation Mono', 'Courier New', monospace;
+  --sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* space scale */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 22px;
+  --s6: 30px;
+  --s7: 44px;
+  --s8: 60px;
+  --s9: 84px;
+
+  --measure: 64ch;
+  --page: 1020px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #121412;
+    --panel: #1a1d1a;
+    --sunk: #0d0f0d;
+    --ink: #e6e8e1;
+    --muted: #8d9289;
+    --rule: #3a3f38;
+    --hair: #212420;
+    --grid: #23271f;
+    --mark: #7fa6f0;
+    --mark-soft: #4a6494;
+    --edge: #5f655e;
+    --data: #d9a85c;
+    --bar: #7fa6f0;
+    --bar-dim: #5d635c;
+    --focus: #7fa6f0;
+  }
+}
+
+/* The attribute must beat the media query in BOTH directions. Specificity
+   0-2-0 vs 0-1-0 handles that regardless of source order. */
+:root[data-theme='dark'] {
+  --ground: #121412;
+  --panel: #1a1d1a;
+  --sunk: #0d0f0d;
+  --ink: #e6e8e1;
+  --muted: #8d9289;
+  --rule: #3a3f38;
+  --hair: #212420;
+  --grid: #23271f;
+  --mark: #7fa6f0;
+  --mark-soft: #4a6494;
+  --edge: #5f655e;
+  --data: #d9a85c;
+  --bar: #7fa6f0;
+  --bar-dim: #5d635c;
+  --focus: #7fa6f0;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --ground: #e6e8e3;
+  --panel: #eff1ec;
+  --sunk: #dde0da;
+  --ink: #16191a;
+  --muted: #575c58;
+  --rule: #b9beb7;
+  --hair: #d2d6cf;
+  --grid: #dce0d9;
+  --mark: #1f4fa8;
+  --mark-soft: #5878b5;
+  --edge: #7f857e;
+  --data: #7a4e0b;
+  --bar: #1f4fa8;
+  --bar-dim: #737a72;
+  --focus: #1f4fa8;
+  color-scheme: light;
+}

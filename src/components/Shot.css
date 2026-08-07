@@ -1,0 +1,48 @@
+.shots {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  margin-top: var(--s5);
+}
+
+.shot {
+  margin: 0;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* The Tracer UI is a light interface. On the dark theme a raw white block
+     glares against the ground, so it is dimmed until hovered — readable
+     either way, aggressive in neither. */
+  transition: filter 0.2s ease;
+}
+
+.shot figcaption {
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 9px 12px 10px;
+  border-top: 1px solid var(--rule);
+}
+
+@media (prefers-color-scheme: dark) {
+  .shot img {
+    filter: brightness(0.86) contrast(1.02);
+  }
+  .shot:hover img {
+    filter: none;
+  }
+}
+:root[data-theme='dark'] .shot img {
+  filter: brightness(0.86) contrast(1.02);
+}
+:root[data-theme='dark'] .shot:hover img {
+  filter: none;
+}
+:root[data-theme='light'] .shot img {
+  filter: none;
+}

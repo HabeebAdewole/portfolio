@@ -1,0 +1,180 @@
+.entry {
+  display: grid;
+  grid-template-columns: 3.25rem 1fr;
+  gap: 0 var(--s5);
+  padding: 34px 0 38px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.idx {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  padding-top: 5px;
+}
+
+.entry h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+  max-width: 26ch;
+}
+
+.entry .deck {
+  margin-bottom: var(--s4);
+  color: var(--muted);
+  font-size: 0.9375rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+}
+.entry .deck .sep {
+  color: var(--rule);
+}
+
+.entry .body {
+  max-width: var(--measure);
+}
+.entry .body + .body {
+  margin-top: 11px;
+}
+.entry .body.quiet {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+/* prose resuming after a panel or a pull needs its own top gap */
+.panel + .body,
+.pull + .body {
+  margin-top: var(--s5);
+}
+
+/* the one line worth lifting out — 1px keeps it under the coloured-rail ban */
+.pull {
+  margin-top: var(--s5);
+  padding-left: var(--s4);
+  border-left: 1px solid var(--mark);
+  font-size: 1.0625rem;
+  max-width: 52ch;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+}
+.stack li {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  border: 1px solid var(--hair);
+  padding: 4px 9px;
+}
+
+/* ---------- asset slot ----------
+   States what exists instead of showing an empty box pretending to be a
+   screenshot. Removed entirely once the real asset lands. */
+.slot {
+  margin-top: var(--s5);
+  border: 1px solid var(--rule);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  padding: 14px 16px;
+}
+.slot svg {
+  flex: none;
+  color: var(--muted);
+  opacity: 0.6;
+}
+.slot .txt {
+  min-width: 0;
+}
+.slot .what {
+  display: block;
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.slot .st {
+  display: block;
+  font-size: 0.75rem;
+  margin-top: 3px;
+}
+.slot .st.ready {
+  color: var(--data);
+}
+.slot .st.waiting {
+  color: var(--muted);
+}
+
+/* ---------- actions ---------- */
+.acts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2) 10px;
+  margin-top: var(--s5);
+}
+
+.act {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--edge);
+  padding: 10px 12px;
+  min-height: 44px;
+  transition:
+    color 0.16s ease,
+    border-color 0.16s ease;
+}
+.act:hover,
+.act:focus-visible {
+  color: var(--mark);
+  border-color: var(--mark);
+}
+
+/* not a link — a stated absence */
+.act.pending {
+  color: var(--muted);
+  border-style: dashed;
+  border-color: var(--rule);
+}
+
+/* ---------- slim ---------- */
+.entry.slim {
+  padding: 22px 0 24px;
+}
+.entry.slim h3 {
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+.entry.slim .deck {
+  margin-bottom: 9px;
+  font-size: 0.875rem;
+}
+.entry.slim .body {
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .idx {
+    padding-top: 0;
+    margin-bottom: var(--s2);
+  }
+}

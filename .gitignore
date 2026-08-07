@@ -1,0 +1,14 @@
+node_modules
+dist
+dist-ssg
+.claude
+.impeccable
+.kombai
+.plans
+.DS_Store
+*.local
+.env
+.env.*
+!.env.example
+node_modules/.tmp
+.vercel

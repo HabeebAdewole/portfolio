@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adewole Habeeb Adebola — Software Engineer</title>
+    <meta
+      name="description"
+      content="Software engineer in Abeokuta, Nigeria. I build things that get measured, and I report the number either way."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Set the theme before first paint so there is no flash of the wrong ground. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'dark' || saved === 'light') {
+            document.documentElement.setAttribute('data-theme', saved);
+          }
+        } catch (e) {
+          /* private mode — fall through to prefers-color-scheme */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+.mast-sentinel {
+  height: 0;
+}
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--ground);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  padding: 20px 0 18px;
+  border-bottom: 1px solid var(--rule);
+  transition:
+    padding 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Condensed once it leaves the top. Reclaims ~16px on a long page, and the
+   shadow carries a real offset and blur — not a zero-offset halo. */
+.masthead.stuck {
+  padding: 10px 0 9px;
+  box-shadow: 0 6px 18px -14px rgb(0 0 0 / 0.55);
+}
+
+.sig {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.sig .nm {
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.sig .role {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.sig .role::before {
+  content: '/';
+  color: var(--rule);
+  margin-right: var(--s3);
+}
+.sig .loc {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Secondary identity drops away once stuck — the name is enough after the
+   first screen, and the space belongs to navigation. */
+.masthead.stuck .role,
+.masthead.stuck .loc {
+  display: none;
+}
+
+.mnav {
+  display: flex;
+  align-items: center;
+  gap: var(--s1);
+  flex-wrap: wrap;
+}
+
+.navlink {
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.16s ease,
+    border-color 0.16s ease;
+}
+.navlink:hover,
+.navlink:focus-visible {
+  color: var(--ink);
+  border-bottom-color: var(--mark);
+}
+
+.themebtn {
+  background: none;
+  cursor: pointer;
+  color: var(--muted);
+  border: 1px solid var(--edge);
+  padding: 0 10px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--s2);
+  transition:
+    color 0.16s ease,
+    border-color 0.16s ease;
+}
+.themebtn:hover,
+.themebtn:focus-visible {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile: the bar wraps to two rows, which is ~110px of a 844px screen held
+   permanently. Once stuck, the name row goes and navigation stays — you do
+   not need to be told his name twice, you need to be able to move.
+   --------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .masthead {
+    padding: 12px 0 10px;
+    gap: var(--s2);
+  }
+  .masthead.stuck {
+    padding: 6px 0;
+  }
+  .sig .role::before {
+    display: none;
+  }
+  .sig .loc {
+    display: none;
+  }
+  .masthead.stuck .sig {
+    display: none;
+  }
+
+  .mnav {
+    gap: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+  /* Targets stay at 44px. A shorter bar is not worth a smaller tap area on
+     the one device where tap area actually matters. */
+  .navlink {
+    padding: 0 6px;
+  }
+  .themebtn {
+    margin-left: 0;
+  }
+  .mnav .btn {
+    padding: 8px 10px;
+  }
+}

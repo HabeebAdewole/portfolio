@@ -1,0 +1,35 @@
+.hero {
+  padding: 66px 0 58px;
+}
+
+.hero h1 {
+  font-size: clamp(1.6rem, 3.6vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--s5);
+  max-width: 26ch;
+}
+
+.hero .lede {
+  max-width: 62ch;
+  font-size: 1.0625rem;
+  color: var(--muted);
+}
+.hero .lede strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hero-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: var(--s6) 0 var(--s7);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 44px 0 40px;
+  }
+}

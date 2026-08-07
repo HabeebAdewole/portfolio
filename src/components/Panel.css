@@ -1,0 +1,230 @@
+.panel {
+  margin-top: var(--s5);
+  border: 1px solid var(--rule);
+  background: var(--panel);
+}
+
+/* Adjacent panels read as one instrument stack, not two cards. */
+.panel + .panel {
+  border-top: none;
+  margin-top: 0;
+}
+
+.panel-hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s3);
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.6875rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.panel-bd {
+  padding: var(--s4) 14px 18px;
+}
+
+/* ---------- metrics ---------- */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+}
+
+.metric {
+  background: var(--panel);
+  padding: 13px 14px 15px;
+}
+.metric .val {
+  font-size: 1.375rem;
+}
+
+/* display:block matters — a bar made of an inline span silently renders
+   zero-height, which is exactly how these went missing in the mockup. */
+.gauge {
+  display: block;
+  margin-top: 9px;
+  height: 5px;
+  background: var(--sunk);
+  position: relative;
+}
+.gauge i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--bar);
+  display: block;
+  width: var(--fill);
+}
+
+/* ---------- facts ---------- */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+}
+.facts > div {
+  background: var(--panel);
+  padding: 13px 14px 14px;
+}
+.facts .val {
+  font-size: 1.0625rem;
+}
+
+/* ---------- comparison ---------- */
+.cmp {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cmp caption {
+  text-align: left;
+  padding: 0 0 11px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  max-width: 60ch;
+}
+.cmp th {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  font-weight: 400;
+  padding: 0 14px 7px 0;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+.cmp th.num,
+.cmp td.num {
+  text-align: right;
+}
+.cmp td {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  padding: 9px 14px 9px 0;
+  border-bottom: 1px solid var(--hair);
+  vertical-align: middle;
+}
+.cmp tr:last-child td {
+  border-bottom: none;
+}
+.cmp td.rowlab {
+  color: var(--ink);
+  white-space: nowrap;
+}
+.cmp td.pending {
+  color: var(--muted);
+}
+.cmp td.barcell {
+  width: 52%;
+  padding-right: 0;
+}
+
+.bar {
+  display: block;
+  height: 9px;
+  background: var(--sunk);
+  position: relative;
+}
+.bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--bar-dim);
+  display: block;
+  width: var(--fill);
+}
+.cmp tr.lead td.rowlab {
+  font-weight: 700;
+}
+.cmp tr.lead .bar i {
+  background: var(--bar);
+}
+.bar.pending {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--sunk) 0 5px,
+    transparent 5px 10px
+  );
+  border: 1px dashed var(--rule);
+}
+
+/* ---------------------------------------------------------------------------
+   Reveal. The readings settle as the panel comes into view.
+
+   The transition lives on the base rule, not on `[data-reveal='in']`. If both
+   the transition and the new width arrive in the same style recalculation the
+   browser may apply the width before the transition exists and snap instead
+   of animating. Declaring it up front means the state flip changes exactly
+   one property.
+
+   `pending` is only ever set by JS after it has confirmed motion is allowed,
+   so the no-JS and reduced-motion paths never collapse the bars to zero —
+   they take `--fill` straight from the inline style and stay put.
+   --------------------------------------------------------------------------- */
+.gauge i,
+.bar i {
+  /* exponential ease-out — fast departure, long settle, like a needle */
+  transition: width 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel[data-reveal='pending'] .gauge i,
+.panel[data-reveal='pending'] .bar i {
+  width: 0;
+}
+
+/* stagger across a metric row so it reads as four instruments settling,
+   not one block snapping */
+.metric:nth-child(2) .gauge i {
+  transition-delay: 0.06s;
+}
+.metric:nth-child(3) .gauge i {
+  transition-delay: 0.12s;
+}
+.metric:nth-child(4) .gauge i {
+  transition-delay: 0.18s;
+}
+.cmp tbody tr:nth-child(2) .bar i {
+  transition-delay: 0.07s;
+}
+.cmp tbody tr:nth-child(3) .bar i {
+  transition-delay: 0.14s;
+}
+
+/* ---------- tally ---------- */
+.tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+.tally li {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  border: 1px solid var(--rule);
+  padding: 6px 10px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+.tally .tick {
+  color: var(--mark);
+}
+
+@media (max-width: 820px) {
+  .metrics,
+  .facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cmp td.barcell {
+    width: 38%;
+  }
+}
