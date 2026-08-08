@@ -1,5 +1,3 @@
-import latexHome from '../assets/shots/latex-home.png';
-import latexShopPhone from '../assets/shots/latex-shop-phone.png';
 import opportunaHome from '../assets/shots/opportuna.png';
 import tracerAnalyze from '../assets/shots/tracer-analyze.png';
 import type { Entry } from './types';
@@ -276,31 +274,6 @@ export const projects: Entry[] = [
       },
     ],
     stack: ['react 19', 'typescript', 'vite', 'tailwind', 'zustand', 'vite-plugin-pwa'],
-    previews: [
-      {
-        poster: latexHome,
-        w: 1440,
-        h: 900,
-        aspect: '16 / 10',
-        label: 'The storefront',
-        meta: 'woven in heritage',
-        alt: 'The Latex Fabrics home page: a deep burgundy hero reading "Discover Premium Fabrics", with lace, Swiss voile and sequins, and a row of fabric categories below.',
-        caption: 'Lace, Swiss voile, cord lace and aso-oke, priced by the yard',
-      },
-      {
-        poster: latexShopPhone,
-        w: 414,
-        h: 896,
-        aspect: '16 / 10',
-        /* A 414-wide capture cropped into a landscape window is destroyed,
-           so this one sits whole on the stage instead. */
-        fit: 'contain',
-        label: 'Shop, on a phone',
-        meta: '12 fabrics in stock',
-        alt: 'The Latex Fabrics shop on a phone: fabric cards with naira prices per yard, live stock counts, add-to-cart buttons and a bottom tab bar for home, shop, search, wishlist and cart.',
-        caption: 'Where it is actually used. Naira by the yard, live stock, and a cart that survives going offline',
-      },
-    ],
     actions: [
       {
         label: 'Repo',
