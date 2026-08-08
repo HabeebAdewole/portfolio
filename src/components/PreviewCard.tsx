@@ -62,7 +62,7 @@ function Card({ p }: { p: Preview }) {
               <Icon name="play" size={12} />
               Load the live app
             </span>
-            <span className="pv-warn">free tier — may take a moment to wake</span>
+            <span className="pv-warn">free tier, may take a moment to wake</span>
           </button>
         )}
       </div>
@@ -83,7 +83,7 @@ function Card({ p }: { p: Preview }) {
           </button>
         ) : (
           <span className="pv-state">
-            {hasVideo ? 'paused — reduced motion' : 'recording pending'}
+            {hasVideo ? 'paused for reduced motion' : 'recording pending'}
           </span>
         )}
       </figcaption>

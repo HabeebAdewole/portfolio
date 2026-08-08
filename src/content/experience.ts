@@ -5,21 +5,21 @@ export const experience: Entry[] = [
     id: 'nacos',
     index: '02.1',
     title: 'President, NACOS Crescent University chapter',
-    deck: ['2025–26 session', 'Completed, handed over'],
+    deck: ['2025–26 session', 'Finished and handed over'],
     body: [
       {
         t: 'p',
         text:
-          'Ran the executive administration for the Computer Science department across ' +
-          'technical, welfare, academic and social portfolios — the primary channel between ' +
-          'the student body and faculty leadership.',
+          'Ran the executive for the Computer Science department for one session. Technical, ' +
+          'welfare, academic and social, and the line between the student body and the ' +
+          'faculty whenever either had something to say to the other.',
       },
       {
         t: 'p',
         text:
-          'Three manual processes went digital under it. Two departmental events ran for the ' +
-          'first time and are now fixtures. I rebuilt the chapter Dev Team so students across ' +
-          'year groups had something real to build.',
+          'Three manual processes went digital while I was there. Two events ran for the ' +
+          'first time and are still running. I rebuilt the chapter Dev Team so students below ' +
+          'final year had something real to build.',
       },
     ],
     panels: [
@@ -49,7 +49,7 @@ export const experience: Entry[] = [
         ],
       },
     ],
-    actions: [{ label: 'What I’d do differently — not written yet', pending: true }],
+    actions: [{ label: 'What I’d do differently, not written yet', pending: true }],
   },
 
   {
@@ -62,9 +62,9 @@ export const experience: Entry[] = [
       {
         t: 'p',
         text:
-          'Java on OOP fundamentals — inheritance, static members, method overriding — plus ' +
-          'text parsing and validation with the Pattern and Matcher API. A banking application ' +
-          'and a student grading system came out of it. Certificate awarded 2025.',
+          'Java, on the fundamentals. Inheritance, static members, method overriding, and text ' +
+          'parsing with the Pattern and Matcher API. A banking app and a student grading ' +
+          'system came out of it.',
       },
     ],
     stack: ['java', 'html', 'css', 'javascript'],
@@ -81,7 +81,7 @@ export const experience: Entry[] = [
         t: 'p',
         text:
           'Computational Science, Numerical Methods, Algorithms & Complexity, Discrete ' +
-          'Structures. Teaching a proof is the fastest way to find out you don’t understand it.',
+          'Structures. Teaching a proof is the fastest way to find out you do not understand it.',
       },
     ],
   },

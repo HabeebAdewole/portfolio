@@ -1,5 +1,4 @@
 import opportunaHome from '../assets/shots/opportuna.png';
-import tracerAlerts from '../assets/shots/tracer-alerts.png';
 import tracerAnalyze from '../assets/shots/tracer-analyze.png';
 import type { Entry } from './types';
 
@@ -13,17 +12,24 @@ export const projects: Entry[] = [
       {
         t: 'p',
         text:
-          'Trained on the Elliptic dataset and shipped as a working application rather than ' +
-          'a notebook. A Random Forest reached {{0.807}} F1 on the illicit class, reproducing ' +
-          'the Weber et al. (2019) benchmark under the same evaluation protocol.',
+          'Trained on the Elliptic dataset and shipped as a real application, not a notebook. ' +
+          'A Random Forest got {{0.807}} F1 on the illicit class. That matches the published ' +
+          'Weber benchmark on the same data and the same split.',
       },
       {
         t: 'p',
         text:
-          'SMOTE for class rebalance, and a temporal train/test split so no future data leaks ' +
-          'backwards into training. The app screens every transaction per time step against a ' +
-          'capacity budget, raises analyst alerts, and draws the 2-hop payment neighbourhood ' +
-          'of whatever it scored.',
+          'SMOTE for the class imbalance. The split is temporal, so no future data leaks ' +
+          'backwards into training. The app scores every transaction per time step against a ' +
+          'capacity budget, raises alerts for the analyst, and draws the 2-hop payment ' +
+          'neighbourhood of whatever it just scored.',
+      },
+      {
+        t: 'p',
+        text:
+          'SHAP would not install in the target environment, so I wrote the attribution myself ' +
+          'in NumPy over scikit-learn’s trees. There is a test asserting the contributions sum ' +
+          'exactly to the prediction. They do.',
       },
     ],
     panels: [
@@ -43,8 +49,9 @@ export const projects: Entry[] = [
         title: 'Models compared',
         corner: 'F1, illicit',
         caption:
-          'I expected the graph model to win. Both of the clever approaches lost to the ' +
-          'plain forest, and the dataset explains why.',
+          'I expected the graph model to win. Both of the clever ones lost to the plain ' +
+          'forest. The features already summarise each transaction’s neighbours, so the ' +
+          'graph was learning something the forest had.',
         columns: ['Model', 'F1'],
         rows: [
           { label: 'Random Forest', value: '0.807', fill: 80.7, lead: true },
@@ -74,22 +81,11 @@ export const projects: Entry[] = [
         /* The embed lands on a login wall, so the credentials belong on the
            card rather than in a README nobody opens. The deployment runs with
            DEMO_MODE on, which makes the admin writes read-only. */
-        meta: 'sign in — analyst / analyst123',
+        meta: 'sign in with analyst / analyst123',
         embed: 'https://tracer-web.onrender.com',
         prewarm: 'https://tracer-api-68u0.onrender.com',
         alt: 'The Tracer analyst interface: transaction 30179316 flagged illicit at 91.0% fraud probability, Random Forest and GraphSAGE scores side by side, a decision-path attribution chart showing which features pushed the score, and the 2-hop payment network below.',
-        caption: 'Search a transaction, score it, and see which features moved the decision',
-      },
-      {
-        poster: tracerAlerts,
-        w: 1440,
-        h: 900,
-        aspect: '16 / 10',
-        label: 'Working the alert queue',
-        meta: '142 open',
-        alt: 'The analyst alert queue, showing open alerts with transaction id, ground truth, model probability and which model raised each one.',
-        caption: 'Every alert traced back to the model and time step that raised it',
-        seconds: 10,
+        caption: 'Search a transaction, score it, see what moved the decision',
       },
     ],
     actions: [
@@ -103,7 +99,7 @@ export const projects: Entry[] = [
         href: 'https://github.com/HabeebAdewole/fraud-detection-system',
         icon: 'github',
       },
-      { label: 'Writeup — not published yet', pending: true },
+      { label: 'Writeup, not written yet', pending: true },
     ],
   },
 
@@ -116,17 +112,16 @@ export const projects: Entry[] = [
       {
         t: 'p',
         text:
-          'Type a prompt, get an editable SVG back. The first build leaned on the good tools ' +
-          '— Stability AI for generation, Vectorizer.AI for the trace, Supabase holding the ' +
+          'Type a prompt, get an editable SVG back. The first build used the good tools. ' +
+          'Stability AI for generation, Vectorizer.AI for the trace, Supabase holding the ' +
           'result. One flow, no manual step in the middle.',
       },
       {
         t: 'p',
         text:
-          'Then I rebuilt the whole generation path with no external AI in it, to find out ' +
-          'whether I could. Three pieces, all mine: an NLP intent parser in scikit-learn, a ' +
-          'programmatic SVG assembly engine, and a design variation system, served from a ' +
-          'FastAPI microservice.',
+          'Then I built it again with no external AI in it, to see whether I could. An intent ' +
+          'parser in scikit-learn, an SVG assembly engine, and a variation system, all mine, ' +
+          'served from a FastAPI microservice.',
       },
       {
         t: 'pull',
@@ -142,8 +137,8 @@ export const projects: Entry[] = [
         corner: 'Same product',
         columns: ['Build', 'Generation path'],
         rows: [
-          { label: 'v1 — API', value: 'stability ai → vectorizer.ai', fill: null, lead: true },
-          { label: 'v2 — self-built', value: 'sklearn parser → svg engine', fill: null },
+          { label: 'v1, with APIs', value: 'stability ai → vectorizer.ai', fill: null, lead: true },
+          { label: 'v2, no APIs', value: 'sklearn parser → svg engine', fill: null },
         ],
       },
     ],
@@ -157,20 +152,20 @@ export const projects: Entry[] = [
       'scikit-learn',
     ],
     slot: {
-      what: 'Prompt to SVG, screen recording',
+      what: 'Prompt to SVG',
       status: 'waiting',
-      note: 'after the v1 deploy',
+      note: 'waiting on the v1 deploy',
       icon: 'vector',
     },
     actions: [
-      { label: 'Live — deploying', pending: true },
+      { label: 'Live, deploying', pending: true },
       {
-        label: 'v1 repo — API build',
+        label: 'v1 repo, the API build',
         href: 'https://github.com/HabeebAdewole/reimagined-system',
         icon: 'github',
       },
       {
-        label: 'v2 repo — self-built',
+        label: 'v2 repo, the self-built one',
         href: 'https://github.com/HabeebAdewole/vectogen-v2',
         icon: 'github',
       },
@@ -186,16 +181,16 @@ export const projects: Entry[] = [
       {
         t: 'p',
         text:
-          'Verified internship listings on one side, recruitment workflow on the other. I ' +
-          'built the flows that hold it together — auth, discovery, application management, ' +
-          'profiles, and role-based dashboards for three different kinds of user.',
+          'Verified internship listings on one side, recruitment on the other. I built the ' +
+          'flows that hold it together. Auth, discovery, applications, profiles, and separate ' +
+          'dashboards for students, employers and admins.',
       },
       {
         t: 'p',
         quiet: true,
         text:
-          'Worked from product ideation through to MVP, which meant arguing about requirements ' +
-          'and the design system as much as writing components.',
+          'Ideation through to MVP, so I spent as much time arguing about requirements and ' +
+          'the design system as writing components.',
       },
     ],
     panels: [
@@ -227,18 +222,18 @@ export const projects: Entry[] = [
         alt: 'The Opportuna landing page: "Find the Right Internships or Interns", with navigation for companies, interns, schools, and a sign-up call to action.',
         /* The three dashboards are behind the login, so the embed shows the
            public side only. Say that rather than implying otherwise. */
-        caption: 'Public side of the platform — the three dashboards sit behind sign-in',
+        caption: 'This is the public side. The three dashboards are behind sign-in',
       },
     ],
     slot: {
-      what: 'Student, employer and admin dashboards',
+      what: 'The three dashboards',
       status: 'waiting',
-      note: 'behind login — needs a screenshot or demo credentials',
+      note: 'behind sign-in, needs a screenshot',
       icon: 'dashboard',
     },
     actions: [
       { label: 'Open it live', href: 'https://opportuna-website.vercel.app', icon: 'external' },
-      { label: 'Repo — private to the team', pending: true },
+      { label: 'Repo is private to the team', pending: true },
     ],
   },
 
@@ -252,17 +247,17 @@ export const projects: Entry[] = [
         t: 'p',
         text:
           'Brought in to work out what a fabric business actually needed before anyone wrote ' +
-          'code — brand documentation, requirements, a design system, wireframes. The job ' +
-          'started as translation: turning a non-technical owner’s commercial goals into ' +
-          'something a developer could build from without guessing.',
+          'code. Brand documentation, requirements, a design system, wireframes. The job was ' +
+          'translation. The owner knew her business and not software, and somebody had to ' +
+          'turn one into the other.',
       },
       {
         t: 'p',
         text:
-          'Then I built it. Ten routes, cart and wishlist in local state, and orders that ' +
-          'hand off to WhatsApp because that is where the customers already are. It installs ' +
-          'to the home screen and keeps working when the connection drops, which in Lagos is ' +
-          'a requirement rather than a nice-to-have.',
+          'Then I built it. Ten routes, cart and wishlist held locally, and orders that hand ' +
+          'off to WhatsApp because that is where her customers already are. It installs to ' +
+          'the home screen and keeps working when the connection drops. In Lagos that is not ' +
+          'a nice-to-have.',
       },
     ],
     panels: [
@@ -279,7 +274,7 @@ export const projects: Entry[] = [
       },
       {
         kind: 'tally',
-        title: 'Delivered before a line of code',
+        title: 'Delivered before any code',
         corner: '5 documents',
         items: [
           'Brand documentation',
@@ -294,7 +289,7 @@ export const projects: Entry[] = [
     slot: {
       what: 'Storefront on a phone',
       status: 'ready',
-      note: 'app runs locally — needs a screenshot',
+      note: 'runs locally, needs a screenshot',
       icon: 'wireframe',
     },
     actions: [
@@ -303,7 +298,7 @@ export const projects: Entry[] = [
         href: 'https://github.com/HabeebAdewole/latex-fabrics',
         icon: 'github',
       },
-      { label: 'Live — not deployed yet', pending: true },
+      { label: 'Not deployed yet', pending: true },
     ],
   },
 
@@ -319,11 +314,11 @@ export const projects: Entry[] = [
         text:
           'Replaced a paper dues book with receipts and searchable payment records. Built in ' +
           'React and TypeScript straight against the Figma file through a Figma MCP ' +
-          'integration, which cut the design-handoff step out entirely.',
+          'integration, so there was no design handoff step at all.',
       },
     ],
     stack: ['react', 'typescript', 'figma mcp'],
-    actions: [{ label: 'Repo — not pushed yet', pending: true }],
+    actions: [{ label: 'Never pushed it', pending: true }],
   },
 
   {
@@ -336,9 +331,9 @@ export const projects: Entry[] = [
       {
         t: 'p',
         text:
-          'Ran the chapter’s elections off it. Nomination data cleaning, de-duplication of ' +
-          'nominee records, and results integration back into the official portal — the ' +
-          'boring parts that decide whether anyone trusts the count.',
+          'We ran the chapter elections on it. Cleaning nomination data, de-duplicating ' +
+          'nominee records, pushing results back to the official portal. Boring work, and it ' +
+          'is the only reason anyone trusted the count.',
       },
     ],
   },

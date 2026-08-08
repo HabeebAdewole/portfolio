@@ -6,7 +6,7 @@ export function Contact() {
   return (
     <footer className="contact" id="contact">
       <h2>Want something built?</h2>
-      <p>I’m open to work and to freelance projects. Fastest way to reach me is email.</p>
+      <p>Open to work and to freelance. Email is the fastest way to reach me.</p>
 
       <div className="row">
         <a className="btn" href={`mailto:${profile.email}`}>

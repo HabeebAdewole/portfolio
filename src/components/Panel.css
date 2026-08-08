@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   gap: var(--s3);
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-bottom: 1px solid var(--rule);
   font-size: 0.6875rem;
   letter-spacing: 0.13em;
@@ -24,7 +24,7 @@
 }
 
 .panel-bd {
-  padding: var(--s4) 14px 18px;
+  padding: var(--s4) 16px 18px;
 }
 
 /* ---------- metrics ---------- */
@@ -37,7 +37,7 @@
 
 .metric {
   background: var(--panel);
-  padding: 13px 14px 15px;
+  padding: 13px 16px 15px;
 }
 .metric .val {
   font-size: 1.375rem;
@@ -69,7 +69,7 @@
 }
 .facts > div {
   background: var(--panel);
-  padding: 13px 14px 14px;
+  padding: 13px 16px 14px;
 }
 .facts .val {
   font-size: 1.0625rem;

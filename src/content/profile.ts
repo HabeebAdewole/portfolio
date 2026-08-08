@@ -13,13 +13,13 @@ export const profile = {
   available: 'Open to work & freelance',
   updated: '2026.08',
 
-  headline: 'I build things that get measured, and I report the number either way.',
+  headline: 'I started on the front end and kept going until I could build the rest.',
 
   lede:
-    'Final-year Computer Science at Crescent University Abeokuta. I write **React and ' +
-    'TypeScript** on the front, **Python, Flask and FastAPI** behind it, and I spent this ' +
-    'year training models to catch fraud. Last session I ran the Computer Science ' +
-    'department as NACOS president.',
+    'Final year Computer Science at Crescent University, Abeokuta. **React and TypeScript** ' +
+    'on the front, **Python and FastAPI** behind it. This year I trained models to catch ' +
+    'fraud on the Bitcoin network. Last session I ran the Computer Science department as ' +
+    'NACOS president, which was mostly scheduling.',
 } as const;
 
 /** The hero readings panel. Figures only — nothing here is a claim. */
