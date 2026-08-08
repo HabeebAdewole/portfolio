@@ -3,7 +3,6 @@ import type { Credential, Fact, StackGroup } from './types';
 export const profile = {
   name: 'Adewole Habeeb Adebola',
   role: 'Software Engineer',
-  locationLong: 'Abeokuta, Ogun State, Nigeria',
   email: 'brightopeyemi4@gmail.com',
   github: 'https://github.com/HabeebAdewole',
   linkedin: 'https://www.linkedin.com/in/habeeb-adewole-16368a285/',

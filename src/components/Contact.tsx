@@ -28,9 +28,7 @@ export function Contact() {
       </div>
 
       <div className="colophon m">
-        <span>
-          {profile.name} · {profile.locationLong}
-        </span>
+        <span>{profile.name}</span>
         <span>Last updated {profile.updated}</span>
       </div>
     </footer>
