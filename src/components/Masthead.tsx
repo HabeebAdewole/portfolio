@@ -19,7 +19,6 @@ export function Masthead() {
         <div className="sig">
           <span className="nm m">{profile.name}</span>
           <span className="role m">{profile.role}</span>
-          <span className="loc m">{profile.location}</span>
         </div>
 
         <nav className="mnav" aria-label="Sections">

@@ -49,16 +49,10 @@
   color: var(--rule);
   margin-right: var(--s3);
 }
-.sig .loc {
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-}
 
 /* Secondary identity drops away once stuck — the name is enough after the
    first screen, and the space belongs to navigation. */
-.masthead.stuck .role,
-.masthead.stuck .loc {
+.masthead.stuck .role {
   display: none;
 }
 
@@ -125,9 +119,6 @@
     padding: 6px 0;
   }
   .sig .role::before {
-    display: none;
-  }
-  .sig .loc {
     display: none;
   }
   .masthead.stuck .sig {
