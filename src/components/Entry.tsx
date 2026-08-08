@@ -7,7 +7,7 @@ import { Previews } from './PreviewCard';
 import './Entry.css';
 
 /* Each project is a bounded unit rather than a row in a running list.
-   The unit is the instrument case; the panels, previews and slot inside it
+   The unit is the instrument case; the panels and previews inside it
    are compartments — edge to edge, divided by hairlines, no frames of their
    own. Nothing nests, which is what makes a bordered block read as built
    rather than as a card with more cards in it. */
@@ -55,15 +55,6 @@ export function Entry({ data }: { data: EntryData }) {
 
       {data.previews && <Previews items={data.previews} />}
 
-      {data.slot && (
-        <div className="slot">
-          <Icon name={data.slot.icon} size={20} />
-          <span className="txt">
-            <span className="what m">{data.slot.what}</span>
-            <span className={`st m ${data.slot.status}`}>{data.slot.note}</span>
-          </span>
-        </div>
-      )}
 
       {hasFooter && (
         <footer className="unit-ft">

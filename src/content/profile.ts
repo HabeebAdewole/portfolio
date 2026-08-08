@@ -13,21 +13,27 @@ export const profile = {
   available: 'Open to work & freelance',
   updated: '2026.08',
 
-  headline: 'I started on the front end and kept going until I could build the rest.',
+  headline: 'You found me. This is where the time went, and what I’ve had my hands in.',
 
+  /* No stack, no school. Both are further down the page and the visitor will
+     get to them; the top of the page is for who is talking. */
   lede:
-    'Final year Computer Science at Crescent University, Abeokuta. **React and TypeScript** ' +
-    'on the front, **Python and FastAPI** behind it. This year I trained models to catch ' +
-    'fraud on the Bitcoin network. Last session I ran the Computer Science department as ' +
-    'NACOS president, which was mostly scheduling.',
+    'Some of it is still running, and you can open it right here without leaving. ' +
+    'Some of it lost to a simpler model and I wrote the number down anyway. Explore…',
 } as const;
 
-/** The hero readings panel. Figures only — nothing here is a claim. */
+/**
+ * The hero readings panel. Figures only, nothing here is a claim.
+ *
+ * Deliberately not academic: the GPAs sit with the rest of the credentials
+ * in section 04, where someone who wants them will look. The top of the page
+ * answers what he has built and whether he is reachable.
+ */
 export const status: Fact[] = [
-  { key: 'Graduating', value: '2026' },
-  { key: 'Major GPA', value: '5.0 / 5.0' },
-  { key: 'Cumulative', value: '4.23 / 5.0' },
   { key: 'Shipped', value: '6 projects' },
+  { key: 'Running live', value: '2' },
+  { key: 'Building since', value: '2023' },
+  { key: 'Free from', value: '2026' },
 ];
 
 export const stack: StackGroup[] = [
@@ -63,7 +69,7 @@ export const credentials: Credential[] = [
   {
     key: 'Standing',
     value: 'Second Class Upper',
-    detail: '4.23 / 5.0 cumulative, final results pending',
+    detail: '4.27 / 5.0 cumulative, final results pending',
   },
   {
     key: 'Certified',

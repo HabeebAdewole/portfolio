@@ -70,15 +70,6 @@ export type Panel =
 
 /* ---------- assets ---------- */
 
-/** States what exists rather than showing an empty box pretending to be a screenshot. */
-export interface AssetSlot {
-  what: string;
-  /** 'ready' — the asset exists and needs dropping in. 'waiting' — blocked on something. */
-  status: 'ready' | 'waiting';
-  note: string;
-  icon: IconName;
-}
-
 /**
  * A preview card: the project running, not a picture of it.
  *
@@ -99,6 +90,12 @@ export interface Preview {
    * Content is anchored to the top, so the header of the app stays visible.
    */
   aspect?: string;
+  /**
+   * 'cover' (default) fills the window and crops. 'contain' sits the whole
+   * image inside it, which is what a phone screenshot needs — cropping a
+   * 414-wide capture into a landscape window destroys it.
+   */
+  fit?: 'cover' | 'contain';
   /** Screen recording. Omit until it has been captured. */
   src?: string;
   /**
@@ -145,9 +142,8 @@ export interface Entry {
   body: Block[];
   panels?: Panel[];
   stack?: string[];
-  /** Preview cards. When present the AssetSlot is redundant — drop it. */
+  /** Preview cards: the project running, not a picture of it. */
   previews?: Preview[];
-  slot?: AssetSlot;
   actions?: Action[];
   /** 'slim' for entries that should not take a full screen. */
   weight?: 'full' | 'slim';

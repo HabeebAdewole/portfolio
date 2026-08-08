@@ -48,6 +48,18 @@
   object-position: top center;
   transition: filter 0.2s ease;
 }
+/* A phone capture shown whole, sitting on the stage rather than cropped
+   into a landscape window. */
+.pv-stage.contain {
+  background: var(--panel);
+}
+.pv-stage.contain video,
+.pv-stage.contain img {
+  object-fit: contain;
+  object-position: center;
+  padding: var(--s4) 0;
+}
+
 .pv-stage iframe {
   display: block;
   width: 100%;

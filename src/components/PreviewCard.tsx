@@ -30,7 +30,7 @@ function Card({ p }: { p: Preview }) {
         {p.meta && <span className="pv-meta">{p.meta}</span>}
       </div>
 
-      <div className="pv-stage" style={box}>
+      <div className={`pv-stage${p.fit === 'contain' ? ' contain' : ''}`} style={box}>
         {hasEmbed && live ? (
           <iframe
             src={p.embed}
@@ -81,11 +81,13 @@ function Card({ p }: { p: Preview }) {
             {playing ? 'Pause' : 'Play'}
             {p.seconds && <span className="pv-dur">{p.seconds}s loop</span>}
           </button>
-        ) : (
-          <span className="pv-state">
-            {hasVideo ? 'paused for reduced motion' : 'recording pending'}
-          </span>
-        )}
+        ) : hasVideo ? (
+          <span className="pv-state">paused for reduced motion</span>
+        ) : null
+        /* A still with nothing pending behind it needs no chip. Saying
+           "recording pending" on a finished screenshot is a to-do note
+           leaking onto a public page. */
+        }
       </figcaption>
     </figure>
   );
