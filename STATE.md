@@ -28,8 +28,8 @@ Next action: **Session 3.5 — record the previews**, then Session 4 (meta/OG, d
 |---|---|---|
 | Tracer frontend | `https://tracer-web.onrender.com` | Live, fast. Sign in `analyst` / `analyst123`, or `admin` / `admin123`. Credentials are published in the repo and the deployment runs `DEMO_MODE=true`, so admin writes are read-only. |
 | Tracer API | `https://tracer-api-68u0.onrender.com` | Render free tier. **Measured 32-second cold start.** |
-| Opportuna backend | Cloud Run, `europe-west2` | From `opportuna-frontend/.env`. Frontend URL still unknown. |
-| Opportuna frontend | ❓ **needed** | Deployed per Habeeb, URL not in the repo. |
+| Opportuna frontend | `https://opportuna-website.vercel.app` | Live, embeddable. Poster captured from the deployment itself. **Landing page only — the three dashboards are behind sign-in.** |
+| Opportuna backend | Cloud Run, `europe-west2` | From `opportuna-frontend/.env`. Only key there is `VITE_BASE_URL`, which ships in the client bundle anyway — not a secret. |
 | VectoGen | not yet | He can deploy soon. |
 
 **The cold start is the important one.** A recruiter who clicks through while the API is

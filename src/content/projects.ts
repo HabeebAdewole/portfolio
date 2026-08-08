@@ -1,3 +1,4 @@
+import opportunaHome from '../assets/shots/opportuna.png';
 import tracerAlerts from '../assets/shots/tracer-alerts.png';
 import tracerAnalyze from '../assets/shots/tracer-analyze.png';
 import type { Entry } from './types';
@@ -214,13 +215,31 @@ export const projects: Entry[] = [
       },
     ],
     stack: ['react', 'typescript', 'tailwind', 'figma'],
+    previews: [
+      {
+        poster: opportunaHome,
+        w: 1440,
+        h: 900,
+        aspect: '16 / 10',
+        label: 'Opportuna, running',
+        meta: 'live on vercel',
+        embed: 'https://opportuna-website.vercel.app',
+        alt: 'The Opportuna landing page: "Find the Right Internships or Interns", with navigation for companies, interns, schools, and a sign-up call to action.',
+        /* The three dashboards are behind the login, so the embed shows the
+           public side only. Say that rather than implying otherwise. */
+        caption: 'Public side of the platform — the three dashboards sit behind sign-in',
+      },
+    ],
     slot: {
-      what: 'Three dashboards',
+      what: 'Student, employer and admin dashboards',
       status: 'waiting',
-      note: 'screenshot needed',
+      note: 'behind login — needs a screenshot or demo credentials',
       icon: 'dashboard',
     },
-    actions: [{ label: 'Repo — private to the team', pending: true }],
+    actions: [
+      { label: 'Open it live', href: 'https://opportuna-website.vercel.app', icon: 'external' },
+      { label: 'Repo — private to the team', pending: true },
+    ],
   },
 
   {
