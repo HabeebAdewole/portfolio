@@ -23,6 +23,24 @@ app so the site is itself evidence of frontend ability.
 Plan: `.plans/phase-2-plan.md` — 11 tasks across 4 sessions, max 3 per session.
 Next action: **Session 3.5 — record the previews**, then Session 4 (meta/OG, deploy).
 
+### Live deployments (found 2026-08-08)
+| Project | URL | Notes |
+|---|---|---|
+| Tracer frontend | `https://tracer-web.onrender.com` | Live, fast. Sign in `analyst` / `analyst123`, or `admin` / `admin123`. Credentials are published in the repo and the deployment runs `DEMO_MODE=true`, so admin writes are read-only. |
+| Tracer API | `https://tracer-api-68u0.onrender.com` | Render free tier. **Measured 32-second cold start.** |
+| Opportuna backend | Cloud Run, `europe-west2` | From `opportuna-frontend/.env`. Frontend URL still unknown. |
+| Opportuna frontend | ❓ **needed** | Deployed per Habeeb, URL not in the repo. |
+| VectoGen | not yet | He can deploy soon. |
+
+**The cold start is the important one.** A recruiter who clicks through while the API is
+asleep gets a UI that hangs for half a minute and concludes the project is broken. Handled
+two ways: `usePrewarm` fires a `no-cors` ping at the API when the card scrolls within 600px
+of the viewport, so the spin-up overlaps with reading time; and the load overlay says
+"free tier — may take a moment to wake" rather than letting it look broken.
+
+Tracer sends no `x-frame-options` and no CSP `frame-ancestors`, so it can legitimately be
+embedded.
+
 ### Preview cards — capture spec
 Screenshots were replaced with **preview cards**: the project running, not a picture of it.
 Cards are built and live; they render the poster and a `RECORDING PENDING` chip until a

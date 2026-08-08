@@ -101,6 +101,19 @@ export interface Preview {
   aspect?: string;
   /** Screen recording. Omit until it has been captured. */
   src?: string;
+  /**
+   * A live deployment to embed. Takes precedence over `src`.
+   * Loaded on click, never on page load — three embedded apps on one page is
+   * slow, and most of them will never be looked at.
+   */
+  embed?: string;
+  /**
+   * An endpoint to ping when this card scrolls into view, to wake a sleeping
+   * backend before the visitor clicks through. Free tiers spin down after
+   * inactivity; Tracer's API measured a 32-second cold start, which is long
+   * enough that a recruiter concludes the project is broken.
+   */
+  prewarm?: string;
   /** Header strip, left. What this view is. */
   label: string;
   /** Header strip, right. A reading, a count, a URL. */

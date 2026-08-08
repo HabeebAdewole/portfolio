@@ -69,12 +69,15 @@ export const projects: Entry[] = [
         w: 1430,
         h: 1653,
         aspect: '16 / 10',
-        label: 'Scoring a transaction',
-        meta: 'RF 91.0% · GNN 99.9%',
-        alt: 'The analyze screen for transaction 30179316: flagged illicit at 91.0% fraud probability, Random Forest and GraphSAGE scores side by side, a decision-path attribution chart showing which features pushed the score, and the 2-hop payment network below.',
-        caption:
-          'Search a transaction, score it, and see which features moved the decision',
-        seconds: 14,
+        label: 'Tracer, running',
+        /* The embed lands on a login wall, so the credentials belong on the
+           card rather than in a README nobody opens. The deployment runs with
+           DEMO_MODE on, which makes the admin writes read-only. */
+        meta: 'sign in — analyst / analyst123',
+        embed: 'https://tracer-web.onrender.com',
+        prewarm: 'https://tracer-api-68u0.onrender.com',
+        alt: 'The Tracer analyst interface: transaction 30179316 flagged illicit at 91.0% fraud probability, Random Forest and GraphSAGE scores side by side, a decision-path attribution chart showing which features pushed the score, and the 2-hop payment network below.',
+        caption: 'Search a transaction, score it, and see which features moved the decision',
       },
       {
         poster: tracerAlerts,
@@ -89,6 +92,11 @@ export const projects: Entry[] = [
       },
     ],
     actions: [
+      {
+        label: 'Open it live',
+        href: 'https://tracer-web.onrender.com',
+        icon: 'external',
+      },
       {
         label: 'Repo',
         href: 'https://github.com/HabeebAdewole/fraud-detection-system',

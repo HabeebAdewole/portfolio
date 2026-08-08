@@ -35,6 +35,7 @@
 /* ---------- viewport ---------- */
 .pv-stage {
   display: block;
+  position: relative;
   background: var(--sunk);
   overflow: hidden;
 }
@@ -46,6 +47,72 @@
   object-fit: cover;
   object-position: top center;
   transition: filter 0.2s ease;
+}
+.pv-stage iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+/* Click-to-load. Three live apps embedded on one page is slow and most of
+   them are never looked at, so the embed waits for intent. */
+/* A light scrim keeps the poster readable underneath; the control itself is
+   solid, so it reads as a button rather than as text floating on a haze. */
+.pv-load {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s3);
+  width: 100%;
+  border: 0;
+  padding: var(--s4);
+  cursor: pointer;
+  background: color-mix(in srgb, var(--ground) 46%, transparent);
+  transition: background-color 0.16s ease;
+}
+.pv-load:hover,
+.pv-load:focus-visible {
+  background: color-mix(in srgb, var(--ground) 24%, transparent);
+}
+
+.pv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  color: var(--ground);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 13px 18px;
+  min-height: 44px;
+  box-sizing: border-box;
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease;
+}
+.pv-load:hover .pv-chip,
+.pv-load:focus-visible .pv-chip {
+  background: var(--mark);
+  border-color: var(--mark);
+}
+
+/* Honest about the cold start rather than letting a 30-second spin-up look
+   like a broken project. */
+.pv-warn {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  background: var(--ground);
+  padding: 4px 9px;
+  border: 1px solid var(--rule);
 }
 
 /* ---------- footer strip ---------- */
@@ -66,6 +133,9 @@
   flex: 1 1 22ch;
 }
 
+a.pv-btn {
+  text-decoration: none;
+}
 .pv-btn {
   display: inline-flex;
   align-items: center;
