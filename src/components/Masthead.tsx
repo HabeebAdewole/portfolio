@@ -37,9 +37,11 @@ export function Masthead() {
             <Icon name={theme === 'dark' ? 'moon' : 'sun'} size={15} />
           </button>
 
-          <a className="btn" href="#contact">
-            CV
-            <Icon name="download" size={12} />
+          {/* Sent on request, so the control says that rather than promising
+              a download it will not deliver. */}
+          <a className="btn" href={profile.cvRequest}>
+            <Icon name="mail" size={12} />
+            Ask for CV
           </a>
         </nav>
       </header>

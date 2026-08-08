@@ -8,6 +8,13 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/habeeb-adewole-16368a285/',
   x: 'https://x.com/_debola7',
   xHandle: '@_debola7',
+
+  /* The CV is sent on request rather than hosted.
+     It carries a phone number, and a PDF at a fixed public URL is reachable
+     by anyone who guesses the path, scrapers included. So the file is not in
+     public/ at all — gating only the link would leave it downloadable.
+     The subject line is prefilled so these are easy to spot in an inbox. */
+  cvRequest: 'mailto:brightopeyemi4@gmail.com?subject=CV%20request',
   available: 'Open to work & freelance',
   updated: '2026.08',
 
