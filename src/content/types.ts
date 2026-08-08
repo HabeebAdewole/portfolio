@@ -20,7 +20,9 @@ export type IconName =
   | 'dashboard'
   | 'wireframe'
   | 'sun'
-  | 'moon';
+  | 'moon'
+  | 'play'
+  | 'pause';
 
 /* ---------- body ---------- */
 
@@ -77,16 +79,37 @@ export interface AssetSlot {
   icon: IconName;
 }
 
-/** A real screenshot. Replaces the AssetSlot once the image lands. */
-export interface Shot {
-  /** Imported asset URL — let Vite hash and optimise it. */
-  src: string;
-  /** Describe what the screen shows, not that it is a screenshot. */
-  alt: string;
-  caption?: string;
-  /** Native pixel dimensions, so the layout reserves space and never shifts. */
+/**
+ * A preview card: the project running, not a picture of it.
+ *
+ * `poster` is required and `src` is not, so a card is complete and honest
+ * before any video exists — it shows the still and says the recording is
+ * pending, rather than leaving a hole in the page.
+ */
+export interface Preview {
+  /** Still frame. Imported asset URL — let Vite hash it. */
+  poster: string;
+  /** Native poster dimensions, so the box is reserved before load. */
   w: number;
   h: number;
+  /**
+   * The window the card shows, e.g. '16 / 10'. App screens are often much
+   * taller than they are wide; without this a single entry produces a card
+   * that swallows the whole column. Defaults to the poster's own ratio.
+   * Content is anchored to the top, so the header of the app stays visible.
+   */
+  aspect?: string;
+  /** Screen recording. Omit until it has been captured. */
+  src?: string;
+  /** Header strip, left. What this view is. */
+  label: string;
+  /** Header strip, right. A reading, a count, a URL. */
+  meta?: string;
+  /** Describe what the screen shows, not that it is a video. */
+  alt: string;
+  caption?: string;
+  /** Rough loop length, shown in the footer once a video exists. */
+  seconds?: number;
 }
 
 export interface Action {
@@ -109,8 +132,8 @@ export interface Entry {
   body: Block[];
   panels?: Panel[];
   stack?: string[];
-  /** Real images. When present the AssetSlot is redundant — drop it. */
-  shots?: Shot[];
+  /** Preview cards. When present the AssetSlot is redundant — drop it. */
+  previews?: Preview[];
   slot?: AssetSlot;
   actions?: Action[];
   /** 'slim' for entries that should not take a full screen. */

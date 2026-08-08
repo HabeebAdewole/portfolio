@@ -21,7 +21,31 @@ locked and a working mockup exists, but no production code has been written.
 app so the site is itself evidence of frontend ability.
 
 Plan: `.plans/phase-2-plan.md` — 11 tasks across 4 sessions, max 3 per session.
-Next action: **Session 4, tasks 10–11 (meta/OG, deploy).**
+Next action: **Session 3.5 — record the previews**, then Session 4 (meta/OG, deploy).
+
+### Preview cards — capture spec
+Screenshots were replaced with **preview cards**: the project running, not a picture of it.
+Cards are built and live; they render the poster and a `RECORDING PENDING` chip until a
+video exists, so the page is complete and honest right now.
+
+Drop recordings in `src/assets/previews/`, then add `src:` to the matching object in
+`src/content/projects.ts`. Nothing else changes.
+
+| Setting | Value | Why |
+|---|---|---|
+| Format | MP4, H.264, **no audio track** | Universal, and a muted video with no audio stream is smaller |
+| Capture size | **1440 × 900** | Matches the card's 16:10 window, so nothing gets cropped unexpectedly |
+| Length | 10–15s, **looping cleanly** | End the take where it started or the loop visibly jumps |
+| Bitrate | ~1–1.5 Mbps, target **under 2 MB** | Two of these already outweigh the whole JS bundle |
+| Tools | Win+G (Game Bar), OBS, or ShareX | Any of them; Game Bar is already installed |
+
+Move slowly and deliberately — pointer jitter reads as nervous on a loop.
+
+**Shot list:**
+1. `tracer-analyze.mp4` (~14s) — type a transaction id, hit Go, score resolves, scroll down
+   through the attribution chart to the network graph.
+2. `tracer-alerts.mp4` (~10s) — the queue, switch the ALL / OPEN / RESOLVED tabs, resolve one.
+3. Latex Fabrics and VectoGen once each is deployed.
 
 ### Session log
 - **Session 1 (tasks 1–3) — DONE.** Vite + React 19 + TS scaffolded by hand (`npm create vite`

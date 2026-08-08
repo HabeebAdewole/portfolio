@@ -3,7 +3,7 @@ import type { Entry as EntryData } from '../content/types';
 import { rich } from '../lib/richText';
 import { Icon } from './Icon';
 import { Panel } from './Panel';
-import { Shots } from './Shot';
+import { Previews } from './PreviewCard';
 import './Entry.css';
 
 export function Entry({ data }: { data: EntryData }) {
@@ -53,7 +53,7 @@ export function Entry({ data }: { data: EntryData }) {
           </ul>
         )}
 
-        {data.shots && <Shots shots={data.shots} />}
+        {data.previews && <Previews items={data.previews} />}
 
         {data.slot && (
           <div className="slot">

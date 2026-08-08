@@ -1,5 +1,5 @@
 import tracerAlerts from '../assets/shots/tracer-alerts.png';
-import tracerNetwork from '../assets/shots/tracer-network.png';
+import tracerAnalyze from '../assets/shots/tracer-analyze.png';
 import type { Entry } from './types';
 
 export const projects: Entry[] = [
@@ -63,20 +63,29 @@ export const projects: Entry[] = [
       'mysql',
       'pytest',
     ],
-    shots: [
+    previews: [
       {
-        src: tracerNetwork,
-        alt: 'The 2-hop payment neighbourhood of a scored transaction. A red illicit node at the centre, a dense inner ring of 177 direct counterparties, and 27 nodes at two hops on the outer ring.',
-        caption: '2-hop neighbourhood of a scored transaction — 177 direct, 27 at two hops',
-        w: 724,
-        h: 708,
+        poster: tracerAnalyze,
+        w: 1430,
+        h: 1653,
+        aspect: '16 / 10',
+        label: 'Scoring a transaction',
+        meta: 'RF 91.0% · GNN 99.9%',
+        alt: 'The analyze screen for transaction 30179316: flagged illicit at 91.0% fraud probability, Random Forest and GraphSAGE scores side by side, a decision-path attribution chart showing which features pushed the score, and the 2-hop payment network below.',
+        caption:
+          'Search a transaction, score it, and see which features moved the decision',
+        seconds: 14,
       },
       {
-        src: tracerAlerts,
-        alt: 'The analyst alerts queue, showing open alerts with transaction id, ground truth, model probability and which model raised each one.',
-        caption: 'Analyst alert queue — 142 open, each traced back to the model that raised it',
+        poster: tracerAlerts,
         w: 1440,
         h: 900,
+        aspect: '16 / 10',
+        label: 'Working the alert queue',
+        meta: '142 open',
+        alt: 'The analyst alert queue, showing open alerts with transaction id, ground truth, model probability and which model raised each one.',
+        caption: 'Every alert traced back to the model and time step that raised it',
+        seconds: 10,
       },
     ],
     actions: [
