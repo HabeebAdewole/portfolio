@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Dark ground: an OG card is seen in feeds, and dark holds its edges
+     against both light and dark surroundings. Tokens are the site's own. */
+  :root {
+    --ground: #121412;
+    --panel:  #1a1d1a;
+    --sunk:   #0d0f0d;
+    --ink:    #e6e8e1;
+    --muted:  #8d9289;
+    --rule:   #3a3f38;
+    --mark:   #7fa6f0;
+    --data:   #d9a85c;
+    --mono: Consolas, 'Cascadia Mono', monospace;
+    --sans: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  body {
+    width: 1200px; height: 630px;
+    background: var(--ground); color: var(--ink);
+    font-family: var(--sans);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* top strip — same chrome language as the panels on the page */
+  .top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 56px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .badge { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+  .led { width: 10px; height: 10px; background: var(--data); }
+
+  .body { flex: 1; padding: 54px 56px 0; }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: 66px; font-weight: 700; line-height: 1.04;
+    letter-spacing: -0.035em;
+    max-width: 21ch;
+  }
+
+  .role {
+    font-family: var(--mono);
+    font-size: 19px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mark);
+    margin-top: 26px;
+  }
+
+  .line {
+    margin-top: 30px;
+    font-size: 26px; line-height: 1.42; color: var(--muted);
+    max-width: 52ch;
+  }
+  .line b { color: var(--ink); font-weight: 600; }
+
+  /* readings strip — the page's thesis, compressed */
+  .readout { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-top: 1px solid var(--rule); }
+  .cell { background: var(--ground); padding: 22px 56px 26px; }
+  .cell:not(:first-child) { padding-left: 30px; }
+  .key {
+    display: block; font-family: var(--mono);
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 9px;
+  }
+  .val {
+    display: block; font-family: var(--mono);
+    font-size: 36px; letter-spacing: -0.03em;
+  }
+  .val .u { font-size: 17px; color: var(--muted); letter-spacing: 0; }
+  .gauge { display: block; margin-top: 12px; height: 5px; background: var(--sunk); position: relative; }
+  .gauge i { position: absolute; inset: 0 auto 0 0; background: var(--mark); display: block; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <span>Adewole Habeeb Adebola</span>
+    <span class="badge"><i class="led"></i>Open to work</span>
+  </div>
+
+  <div class="body">
+    <h1>Things I built, and how they went.</h1>
+    <div class="role">Software Engineer</div>
+    <div class="line">
+      React and TypeScript on the front, <b>Python and FastAPI</b> behind it, and a year
+      spent training models to catch fraud.
+    </div>
+  </div>
+
+  <div class="readout">
+    <div class="cell">
+      <span class="key">Shipped</span>
+      <span class="val">6<span class="u"> projects</span></span>
+      <span class="gauge"><i style="width:100%"></i></span>
+    </div>
+    <div class="cell">
+      <span class="key">Running live</span>
+      <span class="val">2</span>
+      <span class="gauge"><i style="width:33%"></i></span>
+    </div>
+    <div class="cell">
+      <span class="key">Best F1</span>
+      <span class="val">0.807</span>
+      <span class="gauge"><i style="width:80.7%"></i></span>
+    </div>
+    <div class="cell">
+      <span class="key">Building since</span>
+      <span class="val">2023</span>
+      <span class="gauge"><i style="width:100%"></i></span>
+    </div>
+  </div>
+</body>
+</html>
