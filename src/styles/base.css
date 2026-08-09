@@ -173,20 +173,7 @@ button:focus-visible {
   font-size: 0.97em;
 }
 
-/* ---------- motion ----------
-   The universal selector does NOT match pseudo-elements. Name them. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-}
+/* Motion lives in motion.css, including the reduced-motion guard. */
 
 @media (max-width: 640px) {
   .wrap {

@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import type { Entry as EntryData } from '../content/types';
+import { useReveal } from '../hooks/useReveal';
 import { rich } from '../lib/richText';
 import { Icon } from './Icon';
 import { Panel } from './Panel';
@@ -15,9 +16,13 @@ import './Entry.css';
 export function Entry({ data }: { data: EntryData }) {
   const slim = data.weight === 'slim';
   const hasFooter = Boolean(data.stack?.length || data.actions?.length);
+  /* Each unit arrives as it is scrolled to, rather than the whole section
+     animating at once. Under reduced motion the hook reports 'off' and the
+     unit renders in place. */
+  const { ref, state } = useReveal<HTMLElement>();
 
   return (
-    <article className={`unit${slim ? ' slim' : ''}`}>
+    <article className={`unit${slim ? ' slim' : ''}`} ref={ref} data-reveal={state}>
       <header className="unit-hd">
         <span className="unit-idx m">{data.index}</span>
         <h3>{data.title}</h3>
