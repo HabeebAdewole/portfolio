@@ -11,17 +11,27 @@ locked and a working mockup exists, but no production code has been written.
 
 ## Phase Progress
 - [x] Phase 1: Design direction — register, structure, content locked
-- [ ] Phase 2: Build & ship v1  ← **YOU ARE HERE** (PLAN done, EXECUTE next)
-- [ ] Phase 3: Transaction network + command palette + cursor readout
+- [x] Phase 2: Build & ship v1 — **live at `https://habeeb-adebola14.vercel.app`** (2026-08-09)
+- [ ] Phase 3: Transaction network + command palette + cursor readout  ← **YOU ARE HERE**
 - [ ] Phase 4: VectoGen embed (blocked on the VectoGen deploy)
 - [ ] Phase 5: Write the three queued notes
 
 ## Current Phase Goal
-**Ship a live portfolio at a real URL within one week**, built as a Vite + React + TypeScript
-app so the site is itself evidence of frontend ability.
+_None set — Phase 2 shipped. Start Phase 3 with DISCUSS._
 
-Plan: `.plans/phase-2-plan.md` — 11 tasks across 4 sessions, max 3 per session.
-Next action: **Session 4, task 11 — deploy to Vercel.** Task 10 is done.
+Phase 2 goal was "ship a live portfolio at a real URL within one week." Met: all 11 tasks in
+`.plans/phase-2-plan.md` are done and the site is public.
+
+### The live site
+**`https://habeeb-adebola14.vercel.app`** — Vercel scope `adebola14`, project `habeeb`,
+auto-deploying from `HabeebAdewole/portfolio` on `main`. Public: verified 200 with no cookies.
+
+⚠️ **Do not use `portfolio-habeeb9.vercel.app`.** Different project under a different scope,
+sitting behind Vercel Authentication (302 → `sso-api`). It is not this portfolio. It cost a
+session's worth of wrong turns; the only correct host is the one above.
+
+Per-deployment URLs (`habeeb-<hash>-adebola14.vercel.app`) change on every push — never put
+one on a CV or in a bio. The bare alias above is the stable one.
 
 ### Repo
 `github.com/HabeebAdewole/portfolio` (public), branch `main`, pushed and in sync.
@@ -35,8 +45,26 @@ commits carrying them were rewritten and force-pushed out on 2026-08-09 at his r
 - Vercel, default `.vercel.app` domain. Vite is auto-detected; no `vercel.json` needed.
 - `playwright` is a devDependency but has **no install hooks**, so `npm ci` on Vercel will
   not download browsers. Build is safe.
-- `og:image` is still a relative path. Most scrapers require an absolute URL, so it needs
-  the real domain once the deploy URL exists. Same for a `canonical` link and `og:url`.
+- ~~`og:image` is still a relative path.~~ **Done 2026-08-09.** `canonical`, `og:url`,
+  `og:image` and `twitter:image` are all absolute against the live host. The domain is
+  hardcoded in exactly those four places in `index.html`, with a comment saying so — moving
+  to a bought domain later is one find-and-replace and nothing else.
+
+### Custom domain — open
+`habeebadewole.com` is the chosen target (verified available 2026-08-09), **not bought yet —
+no budget.** When buying, add it under scope `adebola14`, project `habeeb` — the same place
+the bad entry was; that part was right.
+
+⚠️ **Delete the `habeeb.adewole` entry in Vercel.** It is not a real domain: `.adewole` is
+not a TLD and returns NXDOMAIN from the root zone, so it will show "Invalid Configuration"
+forever. Vercel's "Add Existing" field accepts any string without checking the TLD exists.
+The A record it suggests (`216.198.79.1`) is Vercel's correct apex IP, but there is no
+registrar and no DNS panel anywhere that could host it.
+
+`adewole.dev` is taken by an unrelated person (`www` → `woleadeoshun10.github.io`).
+Free alternatives if money stays tight: a free `.is-a.dev` subdomain by PR, or the GitHub
+Student Pack's free `.me` — but that one lapses after 12 months, and a dead link on an
+already-sent CV is worse than a stable `.vercel.app`.
 
 ### Live deployments (found 2026-08-08)
 | Project | URL | Notes |
@@ -277,4 +305,4 @@ genuinely hard, visually unmistakable — and it's the right place to prototype 
 cursor readout. Command palette slots in alongside it as the cheap win.
 
 ## Last Session Date
-2026-08-07
+2026-08-09 — Phase 2 shipped. Session 4: deployed, absolute meta URLs, domain diagnosed.
