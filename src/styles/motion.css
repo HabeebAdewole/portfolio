@@ -87,25 +87,18 @@
 }
 
 /* ----------------------------------------------------------------------------
-   Scroll reveals.
+   Scroll choreography lives in src/lib/scroll.ts (GSAP + ScrollTrigger).
+   Those animations are scrubbed to scroll position rather than fired on entry,
+   so they play backwards when you scroll back up.
 
-   Driven by data-reveal from the useReveal hook, not by a CSS-only trick, so
-   the reduced-motion and no-JS paths both render everything in place. 'pending'
-   is only ever set once JS has confirmed motion is allowed.
+   The only piece CSS owns is the section rule, drawn from a custom property
+   that ScrollTrigger scrubs. It defaults to 1, so the rule is simply present
+   if scripting never runs.
    ---------------------------------------------------------------------------- */
-[data-reveal='pending'] {
-  opacity: 0;
-  transform: translateY(11px);
-}
-[data-reveal='in'] {
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity var(--t-slow) var(--ease-out),
-    transform var(--t-slow) var(--ease-out);
+:root {
+  --rule: 1;
 }
 
-/* Section rule draws across as the section is reached. */
 .sect-hd {
   position: relative;
   border-bottom-color: transparent;
@@ -119,27 +112,8 @@
   height: 2px;
   background: var(--ink);
   transform-origin: left;
+  transform: scaleX(var(--rule));
 }
-.sect-hd[data-reveal='pending']::after {
-  transform: scaleX(0);
-}
-.sect-hd[data-reveal='in']::after {
-  animation: draw var(--t-settle) var(--ease-set) both;
-}
-
-/* Tally and fact cells arrive in sequence, so a dense block reads as items
-   rather than one slab appearing. */
-.panel[data-reveal='in'] .tally li {
-  animation: rise var(--t-base) var(--ease-out) both;
-}
-.panel[data-reveal='in'] .tally li:nth-child(1) { animation-delay: 0ms; }
-.panel[data-reveal='in'] .tally li:nth-child(2) { animation-delay: 40ms; }
-.panel[data-reveal='in'] .tally li:nth-child(3) { animation-delay: 80ms; }
-.panel[data-reveal='in'] .tally li:nth-child(4) { animation-delay: 120ms; }
-.panel[data-reveal='in'] .tally li:nth-child(5) { animation-delay: 160ms; }
-.panel[data-reveal='in'] .tally li:nth-child(6) { animation-delay: 200ms; }
-.panel[data-reveal='in'] .tally li:nth-child(7) { animation-delay: 240ms; }
-.panel[data-reveal='in'] .tally li:nth-child(n + 8) { animation-delay: 280ms; }
 
 /* ----------------------------------------------------------------------------
    Icons.
@@ -226,6 +200,55 @@
 .themebtn:active,
 .pv-chip:active {
   transform: translateY(1px);
+}
+
+/* Fill-slide. The ground sweeps in from the left under the label rather than
+   the whole background cross-fading, so the button reads as being filled
+   rather than simply recoloured. Pseudo-element sits behind the text. */
+.btn,
+.act,
+.pv-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.btn::before,
+.act::before,
+.pv-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--mark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+.btn:hover::before,
+.btn:focus-visible::before,
+.act:hover::before,
+.act:focus-visible::before,
+.pv-btn:hover::before,
+.pv-btn:focus-visible::before {
+  transform: scaleX(1);
+}
+
+/* Label and border follow the fill. The colour swap is instant-ish so the
+   text never sits mid-contrast against a half-filled ground. */
+.btn:hover,
+.btn:focus-visible,
+.act:hover,
+.act:focus-visible,
+.pv-btn:hover,
+.pv-btn:focus-visible {
+  color: var(--ground);
+  border-color: var(--mark);
+  background: none;
+}
+
+/* A stated absence is not a control — it must not look fillable. */
+.act.pending::before {
+  content: none;
 }
 
 /* Token chips lift slightly under the pointer so a dense row still reads as

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { initScroll } from './lib/scroll';
 import { Contact } from './components/Contact';
 import { Entry } from './components/Entry';
 import { Hero } from './components/Hero';
@@ -38,6 +40,11 @@ function SectionBody({ id }: { id: string }) {
 }
 
 export function App() {
+  /* Registered after paint so ScrollTrigger measures a laid-out page.
+     initScroll returns its own teardown, which matters under StrictMode's
+     double-invoke in development. */
+  useEffect(() => initScroll(), []);
+
   return (
     <>
       <a className="skip" href="#main">
