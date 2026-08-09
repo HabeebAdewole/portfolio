@@ -12,12 +12,36 @@ locked and a working mockup exists, but no production code has been written.
 ## Phase Progress
 - [x] Phase 1: Design direction — register, structure, content locked
 - [x] Phase 2: Build & ship v1 — **live at `https://habeeb-adebola14.vercel.app`** (2026-08-09)
-- [ ] Phase 3: Transaction network + command palette + cursor readout  ← **YOU ARE HERE**
-- [ ] Phase 4: VectoGen embed (blocked on the VectoGen deploy)
+- [x] Phase 3: Site-wide motion — shipped 2026-08-09
+- [ ] Phase 4: VectoGen embed (blocked on the VectoGen deploy)  ← **YOU ARE HERE**
 - [ ] Phase 5: Write the three queued notes
 
 ## Current Phase Goal
-_None set — Phase 2 shipped. Start Phase 3 with DISCUSS._
+_None set — Phase 3 shipped. Start Phase 4 with DISCUSS._
+
+### Phase 3 — what actually happened
+Scoped as "transaction network + command palette + cursor readout". It became a
+**site-wide motion pass** instead, because that was the real ask.
+
+**Shipped:**
+- `src/styles/motion.css` — one motion vocabulary: three durations, three easings.
+- `src/lib/scroll.ts` — GSAP + ScrollTrigger. Motion is **scrubbed** to scroll position,
+  not fired once on entry, so it reverses on the way back up. That distinction is the whole
+  point; an entry-triggered reveal cannot be made to feel like this by turning it up.
+  Reference was gsap.com.
+- Hero hands off on scroll, section rules draw, units rise 64px, tally chips cascade,
+  preview stages drift for depth, buttons fill from the left on hover.
+- Icons move in the direction they point. Brand marks never move.
+- Everything inside `gsap.matchMedia`, so reduced motion creates **no triggers at all**.
+- Cost: +46 kB gzipped (JS 70 → 116 kB).
+
+**Dropped, by his call:**
+- **Transaction network** — he did not want a Tracer-specific feature. Do not re-propose it.
+- **Cursor work** — offered crosshair/magnetic/custom, he chose to leave the native cursor.
+- **Command palette** — never discussed. Still available if he ever wants it.
+
+`npm run verify:motion` guards the motion layer: it fails if a scroll reveal ever strands
+content at zero opacity, or if reduced motion stops rendering the final state.
 
 Phase 2 goal was "ship a live portfolio at a real URL within one week." Met: all 11 tasks in
 `.plans/phase-2-plan.md` are done and the site is public.
@@ -179,9 +203,7 @@ Move slowly and deliberately — pointer jitter reads as nervous on a loop.
   a gauge animating is reporting a reading. Nothing moves to prove it can move.
 - **Three of the four showcase pieces are deliberately deferred** so v1 ships. Only the
   scroll-driven instrument panel is in v1.
-- **Cursor work, if any, is a crosshair readout over the charts** — value under the pointer,
-  like a chart inspector. Not a cursor that follows the mouse. Prototype it with the network
-  graph in Phase 3, not before.
+- **Cursor work: declined.** Offered in Phase 3, he chose to keep the native cursor.
 
 ---
 
