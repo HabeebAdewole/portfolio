@@ -21,7 +21,22 @@ locked and a working mockup exists, but no production code has been written.
 app so the site is itself evidence of frontend ability.
 
 Plan: `.plans/phase-2-plan.md` — 11 tasks across 4 sessions, max 3 per session.
-Next action: **Session 3.5 — record the previews**, then Session 4 (meta/OG, deploy).
+Next action: **Session 4, task 11 — deploy to Vercel.** Task 10 is done.
+
+### Repo
+`github.com/HabeebAdewole/portfolio` (public), branch `main`, pushed and in sync.
+Commit identity is `brainpizzy <brightopeyemi4@gmail.com>`, which GitHub links to his
+account, so commits count on his contribution graph.
+
+**Never add `Co-Authored-By: Claude` or `Claude-Session:` trailers to his commits.** Nine
+commits carrying them were rewritten and force-pushed out on 2026-08-09 at his request.
+
+### Deploy notes
+- Vercel, default `.vercel.app` domain. Vite is auto-detected; no `vercel.json` needed.
+- `playwright` is a devDependency but has **no install hooks**, so `npm ci` on Vercel will
+  not download browsers. Build is safe.
+- `og:image` is still a relative path. Most scrapers require an absolute URL, so it needs
+  the real domain once the deploy URL exists. Same for a `canonical` link and `og:url`.
 
 ### Live deployments (found 2026-08-08)
 | Project | URL | Notes |
