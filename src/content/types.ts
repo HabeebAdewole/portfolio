@@ -17,7 +17,8 @@ export type IconName =
   | 'sun'
   | 'moon'
   | 'play'
-  | 'pause';
+  | 'pause'
+  | 'download';
 
 /* ---------- body ---------- */
 

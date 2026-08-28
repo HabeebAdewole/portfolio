@@ -37,11 +37,11 @@ export function Masthead() {
             <Icon name={theme === 'dark' ? 'moon' : 'sun'} size={15} />
           </button>
 
-          {/* Sent on request, so the control says that rather than promising
-              a download it will not deliver. */}
-          <a className="btn" href={profile.cvRequest}>
-            <Icon name="mail" size={12} />
-            Ask for CV
+          {/* A real file, so the control promises a download and delivers one.
+              `download` names the saved file rather than leaving it to the URL. */}
+          <a className="btn" href={profile.cv} download>
+            CV
+            <Icon name="download" size={12} />
           </a>
         </nav>
       </header>
