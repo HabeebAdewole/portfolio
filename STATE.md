@@ -2,8 +2,7 @@
 
 ## Project Overview
 Personal portfolio site for **Adewole Habeeb Adebola** — final-year Computer Science,
-Crescent University Abeokuta, graduating 2026. Not built yet: the design direction is
-locked and a working mockup exists, but no production code has been written.
+Crescent University Abeokuta, graduating 2026. Built and live at **`https://adebola.me`**.
 
 **Two audiences, both decided:**
 1. **Recruiters / hiring managers** — skimming ~20 seconds. Stack visible, CV one click away.
@@ -11,7 +10,7 @@ locked and a working mockup exists, but no production code has been written.
 
 ## Phase Progress
 - [x] Phase 1: Design direction — register, structure, content locked
-- [x] Phase 2: Build & ship v1 — **live at `https://habeeb-adebola14.vercel.app`** (2026-08-09)
+- [x] Phase 2: Build & ship v1 — **live at `https://adebola.me`** (2026-08-09)
 - [x] Phase 3: Site-wide motion — shipped 2026-08-09
 - [ ] Phase 4: VectoGen embed (blocked on the VectoGen deploy)  ← **YOU ARE HERE**
 - [ ] Phase 5: Write the three queued notes
@@ -47,15 +46,22 @@ Phase 2 goal was "ship a live portfolio at a real URL within one week." Met: all
 `.plans/phase-2-plan.md` are done and the site is public.
 
 ### The live site
-**`https://habeeb-adebola14.vercel.app`** — Vercel scope `adebola14`, project `habeeb`,
-auto-deploying from `HabeebAdewole/portfolio` on `main`. Public: verified 200 with no cookies.
+**`https://adebola.me`** — the canonical URL. This is the one that goes on the CV, in the X
+bio, and on the GitHub profile.
+
+**Host moved to GitHub Pages** (confirmed 2026-08-28: `server: GitHub.com`, Fastly edge,
+last modified 2026-08-18). `.github/workflows/deploy.yml` runs `npm ci && npm run build` on
+every push to `main` and publishes `dist` via `actions/deploy-pages`. The custom domain is
+configured in **Settings → Pages**, not as a `CNAME` file in the repo — so it is invisible
+from a checkout. Do not go looking for one.
+
+⚠️ **`habeeb-adebola14.vercel.app` is still live and serving the same site** (verified
+2026-08-28). Two hosts, one site. It is now a duplicate, not the home. Either retire the
+Vercel project or leave it as a fallback, but nothing should ever link to it again.
 
 ⚠️ **Do not use `portfolio-habeeb9.vercel.app`.** Different project under a different scope,
 sitting behind Vercel Authentication (302 → `sso-api`). It is not this portfolio. It cost a
-session's worth of wrong turns; the only correct host is the one above.
-
-Per-deployment URLs (`habeeb-<hash>-adebola14.vercel.app`) change on every push — never put
-one on a CV or in a bio. The bare alias above is the stable one.
+session's worth of wrong turns.
 
 ### Repo
 `github.com/HabeebAdewole/portfolio` (public), branch `main`, pushed and in sync.
@@ -66,29 +72,32 @@ account, so commits count on his contribution graph.
 commits carrying them were rewritten and force-pushed out on 2026-08-09 at his request.
 
 ### Deploy notes
-- Vercel, default `.vercel.app` domain. Vite is auto-detected; no `vercel.json` needed.
-- `playwright` is a devDependency but has **no install hooks**, so `npm ci` on Vercel will
-  not download browsers. Build is safe.
-- ~~`og:image` is still a relative path.~~ **Done 2026-08-09.** `canonical`, `og:url`,
-  `og:image` and `twitter:image` are all absolute against the live host. The domain is
-  hardcoded in exactly those four places in `index.html`, with a comment saying so — moving
-  to a bought domain later is one find-and-replace and nothing else.
+- **GitHub Pages via GitHub Actions**, from `main`. Node 22, `npm ci`, `npm run build`,
+  upload `dist`. Vite needs no base-path override because the site is served from a domain
+  apex, not a `/repo/` subpath — **if the custom domain is ever removed, `base` in
+  `vite.config.ts` has to be set or every asset 404s.**
+- `playwright` is a devDependency but has **no install hooks**, so `npm ci` in CI will not
+  download browsers. Build is safe. `npm run verify` and `verify:motion` are **not** in the
+  workflow — they are local gates only.
+- ~~`og:image` is still a relative path.~~ **Done 2026-08-09.**
+- ~~The four meta URLs point at the Vercel host.~~ **Done 2026-08-28.** `canonical`,
+  `og:url`, `og:image` and `twitter:image` now resolve against `https://adebola.me`. The
+  domain is still hardcoded in exactly those four places in `index.html`, with a comment
+  saying so — another move is one find-and-replace and nothing else.
 
-### Custom domain — open
-`habeebadewole.com` is the chosen target (verified available 2026-08-09), **not bought yet —
-no budget.** When buying, add it under scope `adebola14`, project `habeeb` — the same place
-the bad entry was; that part was right.
+### Custom domain — **`adebola.me`, resolved**
+Live and serving on HTTPS. `habeebadewole.com` was the old target and was never bought;
+`adewole.dev` is taken by an unrelated person. Both are closed — do not reopen them.
 
-⚠️ **Delete the `habeeb.adewole` entry in Vercel.** It is not a real domain: `.adewole` is
-not a TLD and returns NXDOMAIN from the root zone, so it will show "Invalid Configuration"
-forever. Vercel's "Add Existing" field accepts any string without checking the TLD exists.
-The A record it suggests (`216.198.79.1`) is Vercel's correct apex IP, but there is no
-registrar and no DNS panel anywhere that could host it.
+⚠️ **Unconfirmed and worth confirming: where `adebola.me` was registered and when it
+expires.** If it came from the GitHub Student Pack's free `.me`, **that lapses after 12
+months**, and a dead link on an already-sent CV is worse than an ugly one. Find the renewal
+date, put it somewhere with a reminder, and decide before it lands.
 
-`adewole.dev` is taken by an unrelated person (`www` → `woleadeoshun10.github.io`).
-Free alternatives if money stays tight: a free `.is-a.dev` subdomain by PR, or the GitHub
-Student Pack's free `.me` — but that one lapses after 12 months, and a dead link on an
-already-sent CV is worse than a stable `.vercel.app`.
+⚠️ **Delete the `habeeb.adewole` entry in Vercel** if the Vercel project is kept at all.
+`.adewole` is not a TLD and returns NXDOMAIN from the root zone, so it shows "Invalid
+Configuration" forever. Vercel's "Add Existing" field accepts any string without checking
+the TLD exists.
 
 ### Live deployments (found 2026-08-08)
 | Project | URL | Notes |
@@ -242,8 +251,10 @@ Move slowly and deliberately — pointer jitter reads as nervous on a loop.
   (own sklearn intent parser, own SVG assembly engine). The API build makes better pictures
   and demos better; the rebuild carries the engineering credibility. Both on one entry.
   - ⚠️ **Unconfirmed:** which build came first. Page currently says APIs first, rebuild second.
-- **Latex Fabrics is labelled design work, not a shipped product.** It was scoping and
-  design only — brand doc, PRD, FRD, design system, wireframes. Nothing was built.
+- ~~**Latex Fabrics is labelled design work, not a shipped product.**~~ **Overturned in
+  Session 3 — it was built.** A real React 19 + Vite PWA: 10 routes, zustand cart and
+  wishlist, `vite-plugin-pwa`, offline page, WhatsApp checkout. The entry says so. This
+  line is kept struck through because the wrong version was believed for three sessions.
 - **Left off the site deliberately:** phone number (public page), "References available on
   request," and the resume's Personal Skills list. A page whose whole argument is
   *show, don't claim* can't carry "critical and creative problem solving."
@@ -321,10 +332,13 @@ Nothing blocking design. Three things block the *build*:
 ---
 
 ## Next Phase Preview
-**Phase 3 — the transaction network.** Once v1 is live, build the interactive 2-hop payment
-graph on the Tracer entry. It's the strongest frontend evidence available — his own work,
-genuinely hard, visually unmistakable — and it's the right place to prototype the crosshair
-cursor readout. Command palette slots in alongside it as the cheap win.
+**Phase 4 — the VectoGen embed**, still blocked on the VectoGen deploy. If that stays
+blocked, Phase 5 (write the three queued notes) is the one that moves without waiting on
+anything, and it is the only section of the site currently admitting it is empty.
+
+⚠️ The old preview here described a transaction network and a crosshair cursor. **Both were
+dropped by his call in Phase 3. Do not re-propose them.**
 
 ## Last Session Date
-2026-08-09 — Phase 2 shipped. Session 4: deployed, absolute meta URLs, domain diagnosed.
+2026-08-28 — checked the live site. Host had moved to GitHub Pages on `adebola.me` without
+STATE.md knowing; meta URLs repointed, deploy and domain sections rewritten.
