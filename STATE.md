@@ -255,8 +255,17 @@ Move slowly and deliberately — pointer jitter reads as nervous on a loop.
   Session 3 — it was built.** A real React 19 + Vite PWA: 10 routes, zustand cart and
   wishlist, `vite-plugin-pwa`, offline page, WhatsApp checkout. The entry says so. This
   line is kept struck through because the wrong version was believed for three sessions.
-- **Left off the site deliberately:** phone number (public page), "References available on
-  request," and the resume's Personal Skills list. A page whose whole argument is
+- **The CV is hosted for download** (`public/Adewole-Habeeb-Adebola-CV.pdf`), changed
+  2026-08-28. It had been a `mailto:` "Ask for CV" since Phase 2; a recruiter skimming for
+  twenty seconds does not send an email and wait a day, so the button now delivers.
+  ⚠️ **The hosted PDF is not the master.** The phone number is stripped from the copy before
+  export — the phone is kept off the public page on purpose, and a PDF at a fixed URL is
+  reachable by anyone who guesses the path. Email and GitHub survive on it, so there is
+  still a way through. Master `.docx` lives outside the repo in `Downloads/`; to regenerate,
+  strip the phone paragraph, export to PDF, replace the file, bump `cvUpdated` in
+  `profile.ts`. Verified 2026-08-28: 2 pages before and after, phone absent.
+- **Left off the site deliberately:** phone number (public page and the hosted CV),
+  "References available on request," and the resume's Personal Skills list. A page whose whole argument is
   *show, don't claim* can't carry "critical and creative problem solving."
 - **No fabricated data, anywhere.** The RF/GNN hybrid F1 renders as a pending hatched bar
   because the number isn't known. The Notes section says "Nothing published yet — this is

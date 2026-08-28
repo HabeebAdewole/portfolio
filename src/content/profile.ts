@@ -9,12 +9,19 @@ export const profile = {
   x: 'https://x.com/_debola7',
   xHandle: '@_debola7',
 
-  /* The CV is sent on request rather than hosted.
-     It carries a phone number, and a PDF at a fixed public URL is reachable
-     by anyone who guesses the path, scrapers included. So the file is not in
-     public/ at all — gating only the link would leave it downloadable.
-     The subject line is prefilled so these are easy to spot in an inbox. */
-  cvRequest: 'mailto:brightopeyemi4@gmail.com?subject=CV%20request',
+  /* Hosted for download rather than sent on request. A recruiter with the tab
+     open for twenty seconds will not send an email and wait a day.
+
+     The hosted PDF is NOT the master. The phone number is stripped from this
+     copy before it is exported — a file at a fixed public URL is reachable by
+     anyone who guesses the path, scrapers included, and the phone was already
+     kept off the rest of the page on purpose. Email and GitHub are on it, so
+     there is still a way through.
+
+     Regenerating it: strip the phone paragraph from the master .docx, export
+     to PDF, drop it here, and bump `cvUpdated`. Master lives outside the repo. */
+  cv: '/Adewole-Habeeb-Adebola-CV.pdf',
+  cvUpdated: '2026.08',
   available: 'Open to work & freelance',
   updated: '2026.08',
 

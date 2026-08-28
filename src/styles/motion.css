@@ -145,6 +145,14 @@
   transform: translate(2px, -2px);
 }
 
+/* points down, so it goes down */
+.btn:hover .ic-download,
+.btn:focus-visible .ic-download,
+.act:hover .ic-download,
+.act:focus-visible .ic-download {
+  transform: translateY(2px);
+}
+
 .btn:hover .ic-mail,
 .btn:focus-visible .ic-mail {
   transform: translateY(-1px) scale(1.06);

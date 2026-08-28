@@ -20,6 +20,7 @@ const paths: Record<IconName, { d: string; w?: number; extra?: React.ReactNode }
     d: 'M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z',
     w: 1.5,
   },
+  download: { d: 'M12 3v12M7.5 10.5 12 15l4.5-4.5M4 20h16', w: 1.8 },
   play: { d: 'M8 5.2 19 12 8 18.8Z', w: 1.6 },
   pause: { d: 'M9.5 5.5v13M14.5 5.5v13', w: 1.8 },
 };
