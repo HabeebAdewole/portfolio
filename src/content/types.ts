@@ -163,6 +163,15 @@ export interface Credential {
   detail: string;
 }
 
+/** A note left by a visitor in section 05. Shape mirrors supabase/notes.sql.
+    Named Signature because Note is already the writing queue. */
+export interface Signature {
+  id: string;
+  name: string;
+  body: string;
+  created_at: string;
+}
+
 export interface Section {
   no: string;
   id: string;

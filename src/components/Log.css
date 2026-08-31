@@ -1,0 +1,274 @@
+/* ============================================================================
+   Section 05 — the Log. The one section that varies surface.
+
+   Everything here is scoped under .board so the paper world cannot leak into
+   the rest of the page. Type is untouched: prose is --sans, metadata is --mono,
+   and --hand appears on signatures only.
+
+   Colours are measured, not eyeballed (light / dark):
+     note ink on paper      12.96 / 11.25   needs 4.5
+     date on paper           4.88 /  4.76   needs 4.5
+     signature on paper      7.48 /  6.68   needs 4.5
+     paper against board     4.52 /  3.26   needs 3.0
+   In light the paper carries that last one on its fill. In dark it cannot —
+   a warm card on a near-black ground is only 1.21 — so the border carries it
+   instead, exactly as --edge does elsewhere on the site.
+   ============================================================================ */
+
+/* The frame is load-bearing in dark: there, the board can only sit a hair
+   above the page ground before it becomes a bright slab, so luminance alone
+   will not say "this is a board". The edge does. */
+.board {
+  border: 1px solid var(--board-edge);
+  background: var(--board);
+  background-image: radial-gradient(circle at 28% 18%, var(--board) 0%, var(--board-2) 100%);
+  padding: 40px 26px 30px;
+}
+
+/* Columns rather than grid: notes are wildly uneven in length, and a grid
+   leaves a ragged hole under every short one. */
+.scraps {
+  columns: 268px;
+  column-gap: 26px;
+}
+
+.scrap {
+  position: relative;
+  break-inside: avoid;
+  margin: 0 0 30px;
+  padding: 26px 22px 18px;
+  background: var(--paper-a);
+  border: 1px solid var(--paper-edge);
+  color: var(--paper-ink);
+  box-shadow: var(--lift);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Fixed per position, never random. A random angle re-rolls on every render,
+   which reads as the page twitching rather than as paper. */
+.scrap:nth-child(4n + 1) {
+  transform: rotate(-1.9deg);
+}
+.scrap:nth-child(4n + 2) {
+  transform: rotate(1.3deg);
+  background: var(--paper-b);
+}
+.scrap:nth-child(4n + 3) {
+  transform: rotate(-0.7deg);
+  background: var(--paper-c);
+}
+.scrap:nth-child(4n + 4) {
+  transform: rotate(2.1deg);
+  background: var(--paper-b);
+}
+
+.scrap p {
+  margin: 0;
+}
+
+.tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 76px;
+  height: 21px;
+  margin-left: -38px;
+  background: var(--tape);
+  border-left: 1px solid rgba(0, 0, 0, 0.07);
+  border-right: 1px solid rgba(0, 0, 0, 0.07);
+  transform: rotate(-1.6deg);
+}
+
+/* The carve-out: a hand, for signatures only. Never for the note. */
+.sig {
+  display: block;
+  margin-top: var(--s4);
+  font-family: var(--hand);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--paper-sig);
+}
+
+.pwhen {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.625rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--paper-meta);
+}
+
+/* ---------- the form is a blank sheet pinned to the same board ---------- */
+.signer {
+  padding-bottom: 22px;
+  background:
+    repeating-linear-gradient(
+      var(--paper-a) 0 27px,
+      color-mix(in srgb, var(--paper-meta) 22%, transparent) 27px 28px
+    ),
+    var(--paper-a);
+  transform: rotate(-0.9deg);
+}
+
+.pkey {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--paper-meta);
+  margin-bottom: 6px;
+}
+
+.signer input[type='text'],
+.signer textarea {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  color: var(--paper-ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--paper-meta);
+  border-radius: 0;
+  padding: 7px 2px;
+  line-height: 1.5;
+}
+.signer textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+.signer input::placeholder,
+.signer textarea::placeholder {
+  color: var(--paper-meta);
+  opacity: 1;
+}
+.signer .field + .field {
+  margin-top: var(--s4);
+}
+
+/* You write your name in the same hand it will be signed in. */
+.signer .name-in {
+  font-family: var(--hand);
+  font-weight: 600;
+  font-size: 1.375rem;
+  color: var(--paper-sig);
+}
+
+/* The character count is a reading, not a scold — same language as the gauges
+   in section 01. It only turns ochre once you are actually over. */
+.gauge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.pgauge {
+  display: block;
+  flex: 1;
+  height: 5px;
+  background: color-mix(in srgb, var(--paper-meta) 26%, transparent);
+}
+.pgauge > span {
+  display: block;
+  height: 100%;
+  background: var(--paper-meta);
+  transition: width var(--t-base, 0.16s) ease;
+}
+.pgauge.over > span {
+  background: var(--paper-warn);
+}
+.pcount {
+  font-size: 0.625rem;
+  color: var(--paper-meta);
+}
+
+.send {
+  display: block;
+  width: 100%;
+  margin-top: var(--s5);
+  font-size: 0.6875rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--paper-sig);
+  background: none;
+  border: 1px solid var(--paper-sig);
+  padding: 10px 14px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.send:hover:not([disabled]),
+.send:focus-visible {
+  background: var(--paper-sig);
+  color: var(--paper-a);
+}
+.send[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.held {
+  margin: var(--s3) 0 0;
+  font-size: 0.8125rem;
+  color: var(--paper-meta);
+}
+.held strong {
+  color: var(--paper-ink);
+  font-weight: 700;
+}
+
+/* Present for a bot, unreachable for a person. */
+.pot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.board-empty {
+  margin: 0;
+  padding: 10px 0 6px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper-meta);
+  text-align: center;
+}
+
+/* Focus has to stay visible against paper, not just against the page. */
+.board :focus-visible {
+  outline: 2px solid var(--paper-sig);
+  outline-offset: 2px;
+}
+
+/* One column has nothing to overlap, so the angles come almost flat rather
+   than looking like a rendering mistake. */
+@media (max-width: 700px) {
+  .board {
+    padding: 30px 18px 20px;
+  }
+  .scraps {
+    columns: 1;
+  }
+  .scrap {
+    margin-bottom: 22px;
+  }
+  .scrap:nth-child(4n + 1) {
+    transform: rotate(-0.6deg);
+  }
+  .scrap:nth-child(4n + 2) {
+    transform: rotate(0.5deg);
+  }
+  .scrap:nth-child(4n + 3) {
+    transform: rotate(-0.3deg);
+  }
+  .scrap:nth-child(4n + 4) {
+    transform: rotate(0.7deg);
+  }
+  .signer {
+    transform: rotate(-0.4deg);
+  }
+}

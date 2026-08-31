@@ -25,6 +25,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Set these as repository secrets (Settings -> Secrets and variables
+          # -> Actions) to switch section 05 on. Vite inlines them at build
+          # time; with them unset the Log simply does not render, and the build
+          # is byte-for-byte what it was before.
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
