@@ -18,7 +18,8 @@
 }
 .hero .lede strong {
   color: var(--ink);
-  font-weight: 600;
+  /* Alegreya Sans has no 600 — asking for one resolves to this file anyway. */
+  font-weight: 700;
 }
 
 .hero-acts {

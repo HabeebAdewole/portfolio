@@ -239,7 +239,27 @@ Move slowly and deliberately — pointer jitter reads as nervous on a loop.
     the headline and each entry title — the two places the page speaks rather than reports.
   - **Instrument: mono** (Consolas / SF Mono / DejaVu Sans Mono). Every index, label,
     figure and readout. Still load-bearing, still never a costume.
-  - **Prose: sans** (`Segoe UI` stack). Anything that is an argument, not a reading.
+    ⚠️ **Still a system stack** — the one voice that varies by OS. Left that way on purpose:
+    monospace is a genre, the fallbacks are metrically close, and it carries short labels
+    rather than paragraphs. Raised and deferred 2026-08-31, not overlooked.
+  - **Prose: Alegreya Sans** (Juan Pablo del Peral / HT Fonts, OFL), self-hosted, weights
+    400 and 700. Anything that is an argument, not a reading — about 1,570 words, the bulk
+    of the page. Replaced the `Segoe UI` system stack on 2026-08-31; that stack was the last
+    thing rendering as a different typeface per visitor, which is the Constantia failure
+    again. Chosen off a five-face comparison in his real Tracer entry:
+    `claude.ai/code/artifact/b9d6ae1a-887e-4502-ba15-a863210fc77f`.
+
+    ⚠️ **Alegreya Sans has no 600.** Weights are 100/300/400/500/700/800/900. The two rules
+    that asked for 600 (`.hero .lede strong`, `.contact h2`) now say 700 explicitly rather
+    than letting CSS font matching resolve it silently.
+
+    ⚠️ **`size-adjust: 108%` on its @font-face is load-bearing — do not remove it.** Measured
+    at 100px, Alegreya Sans is x-height 46 / cap 65 against Segoe UI's 50 / 70, so at the
+    same px it renders ~8% small. 108% scales it back so the verified type scale needed no
+    change; at 16px it now measures x-height 8px / cap 11px, identical to the outgoing face.
+
+    The italic is not shipped — nothing in `src/content` uses italic emphasis and
+    `richText.tsx` has no italic marker.
 
   The original reason for going mono was that Constantia collapsed to Georgia off-Windows
   and reflowed the headline. **Self-hosting removes that failure mode entirely**, which is
