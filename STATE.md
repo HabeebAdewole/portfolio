@@ -8,6 +8,74 @@ Crescent University Abeokuta, graduating 2026. Built and live at **`https://adeb
 1. **Recruiters / hiring managers** — skimming ~20 seconds. Stack visible, CV one click away.
 2. **Freelance clients** — non-technical. Need outcomes and live things to click, not F1 scores.
 
+## Section 05 — the Log (built 2026-09-01, NOT yet switched on)
+A visitor pinboard: anyone may leave a note, notes are held unapproved until he
+puts them up. Built and verified, but **dormant** — see the switch below.
+
+**The switch.** `src/content/sections.ts` adds section 05 only when both
+`VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are set at build time. With
+them unset the section does not render, does not appear in the nav, and the
+string does not reach the bundle — verified by grepping `dist`. **The live site
+today is byte-for-byte what it was before the Log existed.**
+
+**To turn it on:**
+1. Create a Supabase project, run `supabase/notes.sql` in its SQL editor.
+2. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as **repository
+   secrets** (Settings → Secrets and variables → Actions). `deploy.yml` already
+   passes them to `npm run build`.
+3. Push. The section appears.
+
+⚠️ **The anon key is public and that is fine** — it ships in the JS bundle by
+design, identifies the project, and authorises nothing. Every permission it has
+is in `supabase/notes.sql`: insert an unapproved row, read approved rows.
+**Never put the `service_role` key in these vars** — it bypasses every policy.
+
+⚠️ **Approving is manual, via the Supabase dashboard** (Table editor → notes →
+flip `approved`). Chosen over building an admin view because it is free and
+immediate. To take a note down, flip it back rather than deleting, so the record
+survives.
+
+⚠️ **There is no real rate limiting.** The honeypot stops naive bots and the
+CHECK constraints cap length, but a determined person can POST in a loop. If
+that ever happens the fix is a Supabase edge function in front of the insert;
+not built, because it is speculative until it isn't.
+
+**Design decisions:**
+- **Pinboard direction**, chosen off a six-direction spread:
+  `claude.ai/code/artifact/485a2b4c-db64-4742-9e8c-3380f9362c41`.
+  Resolved mockup: `claude.ai/code/artifact/79ef9e5d-0fd8-4f4f-897a-afa7af342388`.
+- **The blend rule, and this section is its first use: lock type, vary surface.**
+  Crete Round, Alegreya Sans and mono do exactly the jobs they do everywhere
+  else. Paper, tape, rotation, shadow and ground are what change.
+- ⚠️ **Shadows exist ONLY here.** The rest of the site has none, deliberately.
+  Paper needs one or it is a rectangle. Do not let this leak outward.
+- ⚠️ **Caveat is a fourth family and a deliberate carve-out** — signatures only,
+  never a note. A name is a short expected string; a paragraph in a script face
+  excludes people. Its latin file is 51 kB, larger than the display and prose
+  romans combined, and is only fetched once a signature is on screen. **Worth
+  subsetting to A–Z plus punctuation** (would go under 10 kB); not done because
+  it needs `fonttools`, which this machine does not have.
+- Rotations are fixed per position via `nth-child`, **never random** — a random
+  angle re-rolls every render and reads as the page twitching.
+- Supabase is called with two hand-rolled `fetch`es rather than
+  `@supabase/supabase-js` (~40 kB gzipped for a query builder this does not
+  need). Same reasoning that kept MDX out of `richText.tsx`.
+
+**Measured in the live DOM, both themes** (light / dark): note ink on paper
+12.96 / 11.89, date on paper 4.88 / 4.76, signature on paper 7.48 / 6.68,
+card boundary against board 4.52 / 3.26. In dark the paper cannot carry the 3:1
+on fill — a warm card on a near-black ground is 1.21 — so the **border** carries
+it, as `--edge` does elsewhere. The board also gets a frame, because on a dark
+page a board cannot be brightened enough to read as one without becoming a slab.
+
+`verify` and `verify:motion` pass in both states: zero overflow at five widths,
+no target under 44px, no heading skips.
+
+⚠️ **Advice he has not yet accepted or declined: do not launch it empty.**
+An empty board reads as neglect and Notes is already empty. Ask a handful of
+real people to sign it first. **Never seed it with invented notes** — that
+breaks the no-fabricated-data rule the whole site rests on.
+
 ## Phase Progress
 - [x] Phase 1: Design direction — register, structure, content locked
 - [x] Phase 2: Build & ship v1 — **live at `https://adebola.me`** (2026-08-09)

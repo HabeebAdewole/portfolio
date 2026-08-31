@@ -35,8 +35,29 @@
 
   /* type */
   --display: 'Crete Round', Georgia, Rockwell, 'Bookman Old Style', 'Times New Roman', serif;
+  --hand: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
   --mono: Consolas, 'SF Mono', 'DejaVu Sans Mono', 'Liberation Mono', 'Courier New', monospace;
   --sans: 'Alegreya Sans', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* ---- section 05, the Log: the one place surface varies ----
+     A pinboard needs a ground and a paper that are not the page's. Measured,
+     not eyeballed — the ratios are in Log.css. Shadows exist ONLY here; the
+     rest of the site has none, and that is deliberate rather than forgotten. */
+  --board: #6f6d63;
+  --board-2: #5e5c53;
+  --paper-a: #f4efe2;
+  --paper-b: #ece7d7;
+  --paper-c: #f2e8d6;
+  --paper-edge: rgba(0, 0, 0, 0.09);
+  --board-edge: rgba(0, 0, 0, 0.16);
+  --paper-ink: #2a2722;
+  --paper-meta: #6d675c;
+  --paper-sig: #2f4a86;
+  --paper-warn: #8a3f12;
+  --tape: rgba(233, 226, 202, 0.72);
+  --lift:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 10px 22px rgba(0, 0, 0, 0.24);
 
   /* space scale */
   --s1: 4px;
@@ -72,6 +93,23 @@
     --bar: #7fa6f0;
     --bar-dim: #5d635c;
     --focus: #7fa6f0;
+
+  /* the board in dark: paper becomes a warm card, and because that is only
+     1.21 against the ground on fill, the BORDER carries the 3:1 instead */
+  --board: #1c1a16;
+  --board-2: #141310;
+  --paper-a: #2b2924;
+  --paper-b: #262520;
+  --paper-c: #302c24;
+  --paper-edge: #6d6659;
+  --board-edge: #3a352c;
+  --paper-ink: #e8e2d4;
+  --paper-meta: #9a9384;
+  --paper-sig: #8fb0f2;
+  --paper-warn: #d9a85c;
+  --tape: rgba(120, 112, 92, 0.34);
+  --lift: 0 10px 24px rgba(0, 0, 0, 0.55);
+
   }
 }
 
@@ -93,6 +131,23 @@
   --bar: #7fa6f0;
   --bar-dim: #5d635c;
   --focus: #7fa6f0;
+
+  /* the board in dark: paper becomes a warm card, and because that is only
+     1.21 against the ground on fill, the BORDER carries the 3:1 instead */
+  --board: #1c1a16;
+  --board-2: #141310;
+  --paper-a: #2b2924;
+  --paper-b: #262520;
+  --paper-c: #302c24;
+  --paper-edge: #6d6659;
+  --board-edge: #3a352c;
+  --paper-ink: #e8e2d4;
+  --paper-meta: #9a9384;
+  --paper-sig: #8fb0f2;
+  --paper-warn: #d9a85c;
+  --tape: rgba(120, 112, 92, 0.34);
+  --lift: 0 10px 24px rgba(0, 0, 0, 0.55);
+
   color-scheme: dark;
 }
 

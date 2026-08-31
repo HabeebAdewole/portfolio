@@ -3,6 +3,7 @@ import { initScroll } from './lib/scroll';
 import { Contact } from './components/Contact';
 import { Entry } from './components/Entry';
 import { Hero } from './components/Hero';
+import { Log } from './components/Log';
 import { Masthead } from './components/Masthead';
 import { Notes } from './components/Notes';
 import { SectionHeader } from './components/SectionHeader';
@@ -34,6 +35,8 @@ function SectionBody({ id }: { id: string }) {
       return <Notes />;
     case 'stack':
       return <Stack />;
+    case 'log':
+      return <Log />;
     default:
       return null;
   }
