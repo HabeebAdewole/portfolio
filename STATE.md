@@ -233,9 +233,34 @@ Move slowly and deliberately — pointer jitter reads as nervous on a loop.
   Direct quote: "I don't even want it." Do not reintroduce.
 
 ### Visual system
-- **Mono is the display voice** (Consolas / SF Mono / DejaVu Sans Mono). Chosen partly
-  because the previous serif (Constantia) collapsed to Georgia off-Windows and reflowed
-  the headline. Mono is load-bearing here — data and measurement — never a costume.
+- **Three voices, amended 2026-08-31.** Mono was the display voice for Phases 1–4; it is
+  now the *instrument* voice only, and a serif took the display role back.
+  - **Display: Crete Round** (TypeTogether, OFL), self-hosted in `public/fonts/`. Carries
+    the headline and each entry title — the two places the page speaks rather than reports.
+  - **Instrument: mono** (Consolas / SF Mono / DejaVu Sans Mono). Every index, label,
+    figure and readout. Still load-bearing, still never a costume.
+  - **Prose: sans** (`Segoe UI` stack). Anything that is an argument, not a reading.
+
+  The original reason for going mono was that Constantia collapsed to Georgia off-Windows
+  and reflowed the headline. **Self-hosting removes that failure mode entirely**, which is
+  what reopened the decision. The fallback stack is led by Georgia on purpose: measured at
+  100px, Crete Round is x-height 50 / cap 68 / test-line 1895px against Georgia's
+  48 / 69 / 1881 — within about 1%, so the `font-display: swap` reflow is nearly invisible.
+
+  ⚠️ **Crete Round ships Regular 400 and an italic. There is no bold.** Every rule using
+  `--display` states `font-weight: 400` explicitly; a 600 or 700 left in place would hand
+  the browser a synthetic bolder, which fattens the stems and flattens the roundness that
+  is the whole reason for the face. Emphasis comes from size, spacing and colour.
+  The italic is not shipped because nothing uses it yet — see `src/styles/fonts.css`.
+
+  **How it was chosen.** Habibi (his find, rank 998/1946) shipped first and was rejected for
+  having no bold at all. A comparison artifact then set fifteen candidates in his own
+  headline on his own palette, ranked by Google Fonts popularity as a proxy for "generic":
+  `claude.ai/code/artifact/02318963-29e8-494f-adb0-4b4ab86bf896`.
+  ⚠️ **Do not propose Fraunces, Bricolage Grotesque, Inter, Space Grotesk or Playfair
+  Display.** All rank inside the top 50 and were ruled out by name as the faces an AI
+  reaches for by reflex. He rejects generic and he rejects heavy — the brief that landed
+  was *presence without mass*.
 - **Two accents, strict jobs, no drift:** blue `--mark` = interactive only.
   Ochre `--data` = a measured figure inline in prose only. Everything else neutral.
 - Sans (`Segoe UI` stack) carries prose only — anything that is an argument, not a reading.
