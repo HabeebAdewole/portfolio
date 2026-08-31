@@ -24,6 +24,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* The speaking voice. Habibi carries the two moments where the page is a
+   person talking rather than an instrument reporting: the headline, and the
+   name of each thing he built. One weight only — see fonts.css. */
+.d {
+  font-family: var(--display);
+  font-weight: 400;
+}
+
 /* The instrument voice. Mono is load-bearing here — structure, indices,
    labels, every number — never a costume for "technical". */
 .m {

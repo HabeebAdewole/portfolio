@@ -10,7 +10,7 @@ export function Hero() {
     /* One orchestrated arrival rather than four elements each animating to
        their own schedule. --i is the position in the sequence. */
     <section className="hero">
-      <h1 className="m enter" style={{ '--i': 0 } as CSSProperties}>
+      <h1 className="d enter" style={{ '--i': 0 } as CSSProperties}>
         {profile.headline}
       </h1>
 
