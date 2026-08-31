@@ -157,7 +157,23 @@
 }
 
 /* The character count is a reading, not a scold — same language as the gauges
-   in section 01. It only turns ochre once you are actually over. */
+   in section 01. It only turns ochre once you are actually over.
+
+   Two deliberate differences from those gauges:
+
+   1. scaleX, not width. Theirs fire once on scroll reveal; this one fires on
+      every keystroke, and a width transition per keypress recalculates layout
+      each time. motion.css already uses scaleX for the section rules.
+   2. No transition at all. The section-01 gauges ease because they are an
+      instrument settling on a reading you did not cause. This one tracks a
+      value you are typing, and easing it puts the bar 180ms behind your own
+      keystrokes, which reads as lag rather than as smoothness.
+
+   The second point is also load-bearing: a transform transition on this element
+   inside the multicol container never advanced — it sat permanently 'running'
+   with fill: backwards, holding scaleX(0) forever, so the bar never filled.
+   Verified in the live DOM. If you ever add a transition back here, check it
+   actually animates rather than assuming it does. */
 .gauge-row {
   display: flex;
   align-items: center;
@@ -172,9 +188,11 @@
 }
 .pgauge > span {
   display: block;
+  width: 100%;
   height: 100%;
   background: var(--paper-meta);
-  transition: width var(--t-base, 0.16s) ease;
+  transform: scaleX(0);
+  transform-origin: left;
 }
 .pgauge.over > span {
   background: var(--paper-warn);

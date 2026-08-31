@@ -96,7 +96,7 @@ export function Log() {
             />
             <div className="gauge-row">
               <span className={`pgauge${over ? ' over' : ''}`} aria-hidden="true">
-                <span style={{ width: `${Math.min(100, (count / BODY_MAX) * 100)}%` }} />
+                <span style={{ transform: `scaleX(${Math.min(1, count / BODY_MAX)})` }} />
               </span>
               <span className="pcount m" aria-live="polite">
                 {count} / {BODY_MAX}
