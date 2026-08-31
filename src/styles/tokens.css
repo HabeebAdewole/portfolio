@@ -34,6 +34,7 @@
   --focus: #1f4fa8;
 
   /* type */
+  --display: 'Habibi', Constantia, 'Iowan Old Style', Georgia, 'Times New Roman', serif;
   --mono: Consolas, 'SF Mono', 'DejaVu Sans Mono', 'Liberation Mono', 'Courier New', monospace;
   --sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
 

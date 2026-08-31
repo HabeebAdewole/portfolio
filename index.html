@@ -12,6 +12,17 @@
     <meta name="author" content="Adewole Habeeb Adebola" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- The headline is the first thing painted and it is set in Habibi, so the
+         latin subset is fetched in parallel with the CSS rather than after it.
+         latin-ext is deliberately NOT preloaded — most visits never need it. -->
+    <link
+      rel="preload"
+      href="/fonts/habibi-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="canonical" href="https://adebola.me/" />
     <meta name="theme-color" content="#e6e8e3" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#121412" media="(prefers-color-scheme: dark)" />
