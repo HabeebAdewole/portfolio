@@ -99,6 +99,16 @@ not built, because it is speculative until it isn't.
 - Ink/date/signature ratios are unchanged: 12.96 / 11.89, 4.88 / 4.76,
   7.48 / 6.68.
 
+⚠️ **`tokens.css`: the `prefers-color-scheme` block is guarded with
+`:root:not([data-theme='light'])`. Do not remove that guard.** Unguarded it beat
+the light stamp on any dark-OS machine — and did so *invisibly*, because the
+`[data-theme='light']` block re-asserts the original tokens, so ground and ink
+looked right while anything declared only in the bare `:root` (the paper and pin
+colours) fell through to dark. Light page, dark card borders. Verified across
+all four OS × choice combinations.
+**A new token goes in the bare `:root`**, not in the `[data-theme='light']`
+block, which is now redundant.
+
 ⚠️ **The site now defaults to LIGHT, not to the visitor's OS** (2026-09-01).
 `index.html` stamps `data-theme` before first paint; a saved choice still wins.
 `useTheme` no longer listens to `prefers-color-scheme` — there is nothing to
