@@ -26,12 +26,28 @@
   box-shadow: 0 6px 18px -14px rgb(0 0 0 / 0.55);
 }
 
+/* The h1 says "Hey, I'm Habeeb." directly below this bar, so at the top of the
+   page the wordmark would be the name twice in about 100px. It fades in only
+   once you have scrolled past the introduction.
+
+   Hidden with opacity rather than display, deliberately: the space stays
+   reserved, so the navigation sits in exactly the same place stuck or not and
+   the name arrives without shoving anything sideways. */
 .sig {
   display: flex;
   align-items: baseline;
   gap: var(--s3);
   flex-wrap: wrap;
   min-width: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+.masthead.stuck .sig {
+  opacity: 1;
+  transform: none;
 }
 .sig .nm {
   font-size: 0.875rem;
@@ -50,9 +66,9 @@
   margin-right: var(--s3);
 }
 
-/* Secondary identity drops away once stuck — the name is enough after the
-   first screen, and the space belongs to navigation. */
-.masthead.stuck .role {
+/* Secondary identity never appears in the bar now: by the time the name fades
+   in, the role has been on screen and scrolled past. */
+.sig .role {
   display: none;
 }
 
@@ -107,8 +123,9 @@
 
 /* ---------------------------------------------------------------------------
    Mobile: the bar wraps to two rows, which is ~110px of a 844px screen held
-   permanently. Once stuck, the name row goes and navigation stays — you do
-   not need to be told his name twice, you need to be able to move.
+   permanently. The name is dropped outright rather than faded, because
+   opacity would still reserve that whole row for something invisible. You do
+   not need to be told his name twice; you need to be able to move.
    --------------------------------------------------------------------------- */
 @media (max-width: 640px) {
   .masthead {
@@ -121,7 +138,7 @@
   .sig .role::before {
     display: none;
   }
-  .masthead.stuck .sig {
+  .sig {
     display: none;
   }
 

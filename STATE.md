@@ -272,6 +272,16 @@ Move slowly and deliberately — pointer jitter reads as nervous on a loop.
     `data-theme` scope), both theme scopes present, reduced-motion covers `*, *::before,
     *::after`. **Session 3's a11y pass must re-measure in a real browser** — nothing has
     confirmed the React DOM renders these at the right sizes.
+- **Masthead wordmark appears only once stuck** (2026-09-01). The h1 now reads
+  "Hey, I'm Habeeb." directly below the bar, so at the top of the page the
+  wordmark was the name twice in ~100px. Desktop hides it with **opacity, not
+  display** — the space stays reserved so navigation does not shift when it
+  fades in. Mobile drops it with `display: none` in both states, because an
+  invisible row would still cost ~110px of an 844px screen.
+  ⚠️ **Side effect: the role line is gone from the masthead entirely.** It only
+  ever showed at the top, which is now hidden. That is consistent with the
+  "don't frame it yet" decision, and "Software Engineer" still sits in the
+  `<title>` and the meta description.
 - **Interstitial fix — sticky masthead.** Requested before Session 3; also closes the
   critique's mobile red flag ("no sticky nav, no back-to-top" on a 10,000px page).
   `position: sticky` with an IntersectionObserver sentinel rather than a scroll listener.
