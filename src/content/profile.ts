@@ -25,13 +25,20 @@ export const profile = {
   available: 'Open to work & freelance',
   updated: '2026.08',
 
-  headline: 'You found me. This is where the time went, and what I’ve had my hands in.',
+  /* A greeting, not a sentence about the page. Short on purpose — it is the
+     one line set large enough for the face to actually be seen. */
+  headline: 'Hey, I’m Habeeb.',
 
   /* No stack, no school. Both are further down the page and the visitor will
-     get to them; the top of the page is for who is talking. */
+     get to them; the top of the page is for who is talking.
+
+     The first sentence used to be the second half of the headline. It moved
+     here rather than being cut: a greeting says nothing about the work, and
+     without this line the top of the page would not say what it is. */
   lede:
-    'Some of it is still running, and you can open it right here without leaving. ' +
-    'Some of it lost to a simpler model and I wrote the number down anyway. Explore…',
+    'This is where the time went, and what I’ve had my hands in. Some of it is ' +
+    'still running, and you can open it right here without leaving. Some of it ' +
+    'lost to a simpler model and I wrote the number down anyway.',
 } as const;
 
 /**
