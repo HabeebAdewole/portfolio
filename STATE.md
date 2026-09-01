@@ -30,10 +30,34 @@ design, identifies the project, and authorises nothing. Every permission it has
 is in `supabase/notes.sql`: insert an unapproved row, read approved rows.
 **Never put the `service_role` key in these vars** — it bypasses every policy.
 
-⚠️ **Approving is manual, via the Supabase dashboard** (Table editor → notes →
-flip `approved`). Chosen over building an admin view because it is free and
-immediate. To take a note down, flip it back rather than deleting, so the record
-survives.
+⚠️ ~~**Approving is manual, via the Supabase dashboard.**~~ **Superseded
+2026-09-01 — Telegram moderation.** A Database Webhook on INSERT calls the
+`notify` edge function, which messages one chat with the note's full text and
+two buttons; tapping one hits the `moderate` function, which flips the row. The
+dashboard is out of the daily loop. Setup steps live in `supabase/README.md`.
+
+- **Dismiss does not delete** — it sets `dismissed`, so a turned-down note is
+  recoverable and the record of what was said survives.
+- ⚠️ **`moderate` MUST be deployed with `--no-verify-jwt`.** It is opened by
+  tapping a link, which carries no auth header. The HMAC in the URL is what
+  authorises it. `notify` keeps its JWT check, because the webhook sends the
+  service_role key and nobody else should be able to make his phone buzz.
+- ⚠️ **The links are signed for a reason.** An unsigned `?id=…&a=approve` is
+  guessable by anyone who sees the pattern once, which would hand the board to a
+  stranger. HMAC-SHA256 over `id:action:expiry`, seven-day TTL, constant-time
+  compare. Verified against eight forgery cases (wrong action, wrong id, wrong
+  secret, expired, tampered expiry, truncated, empty, NaN expiry) — all rejected.
+  **Rotating `MODERATION_SECRET` invalidates every outstanding link**, which is
+  the fix if one leaks.
+- ⚠️ **The webhook is created in the dashboard, never as committed SQL** — the
+  trigger definition holds the service_role key, and that must not enter the
+  repo.
+- Notifications stop above 12/hour so a spam run cannot bury the inbox; the
+  queue is still readable via `select * from notes_pending`.
+- ⚠️ **The edge functions are written but UNTESTED** as of 2026-09-01 — Deno is
+  not installed on this machine and they cannot run until he deploys them. Only
+  the HMAC was verified, by running the identical Web Crypto code in a browser.
+  Expect to debug the first real note.
 
 ⚠️ **There is no real rate limiting.** The honeypot stops naive bots and the
 CHECK constraints cap length, but a determined person can POST in a loop. If
