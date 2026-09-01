@@ -79,8 +79,19 @@
   color-scheme: light dark;
 }
 
+/* ⚠️ Guarded with :not([data-theme='light']) — do not remove it.
+
+   index.html stamps data-theme before first paint, and the site defaults to
+   light. Unguarded, this block beat that stamp on any machine whose OS is dark:
+   the [data-theme='light'] block below re-asserts the original tokens and so
+   looked fine, while anything declared ONLY in the bare :root above — the paper
+   and pin colours — silently fell through to these dark values. Light ground,
+   dark card borders.
+
+   With the guard, an explicit light choice wins and the bare :root is the one
+   place a new token has to be declared. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --ground: #121412;
     --panel: #1a1d1a;
     --sunk: #0d0f0d;
