@@ -1,20 +1,55 @@
-import { type Action, valid } from '../_shared/sign.ts';
-
 /* ============================================================================
-   moderate — the Approve / Dismiss buttons land here.
+   moderate — PASTE-READY for the Supabase dashboard editor.
 
-   ⚠️ Deploy this one with --no-verify-jwt. It is opened by tapping a link in
-   Telegram, so there is no Authorization header to check. The HMAC in the URL
-   is what authorises it, and it is verified before anything is written.
+   ⚠️ This is functions/moderate/index.ts with _shared/sign.ts inlined, so it has
+   no imports and works in a single-file editor. If you change one, change the
+   other; they are the same function twice.
 
-   Dismiss does not delete. It sets `dismissed`, so a note you turned down is
-   still there if you change your mind — the same reasoning as flipping
-   `approved` back rather than deleting a row.
+   ⚠️ Deploy as: moderate — and turn JWT verification OFF for this one.
+   It is opened by tapping a link in Telegram, which carries no auth header, so
+   a JWT check makes every button fail. The HMAC in the URL authorises it.
    ============================================================================ */
 
 const SECRET = Deno.env.get('MODERATION_SECRET') ?? '';
 const SB_URL = Deno.env.get('SUPABASE_URL') ?? '';
 const SERVICE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '';
+
+const enc = new TextEncoder();
+
+function b64url(buf: ArrayBuffer): string {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+}
+
+async function sign(secret: string, id: string, action: string, exp: number): Promise<string> {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign'],
+  );
+  return b64url(await crypto.subtle.sign('HMAC', key, enc.encode(`${id}:${action}:${exp}`)));
+}
+
+/** Constant time. A fast-exit compare leaks how much of a forged signature was
+    right, which is enough to rebuild one a byte at a time. */
+async function valid(
+  secret: string,
+  id: string,
+  action: string,
+  exp: number,
+  token: string,
+): Promise<boolean> {
+  if (!Number.isFinite(exp) || Date.now() > exp) return false;
+  const expected = await sign(secret, id, action, exp);
+  if (expected.length !== token.length) return false;
+  let diff = 0;
+  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ token.charCodeAt(i);
+  return diff === 0;
+}
 
 const SITE = Deno.env.get('SITE_URL') ?? 'https://adebola.me';
 
@@ -40,16 +75,15 @@ Deno.serve(async (req) => {
   const token = u.searchParams.get('t') ?? '';
 
   if (a !== 'approve' && a !== 'dismiss') return done('invalid');
-  const action = a as Action;
 
-  if (!(await valid(SECRET, id, action, exp, token))) {
+  if (!(await valid(SECRET, id, a, exp, token))) {
     /* One message for a bad signature and for an expired link on purpose:
-       telling an attacker which one they got wrong is free information. */
+       telling an attacker which they got wrong is free information. */
     return done('invalid');
   }
 
   const patch =
-    action === 'approve' ? { approved: true, dismissed: false } : { approved: false, dismissed: true };
+    a === 'approve' ? { approved: true, dismissed: false } : { approved: false, dismissed: true };
 
   const res = await fetch(`${SB_URL}/rest/v1/notes?id=eq.${encodeURIComponent(id)}`, {
     method: 'PATCH',
@@ -70,5 +104,5 @@ Deno.serve(async (req) => {
   const rows = (await res.json()) as unknown[];
   if (rows.length === 0) return done('gone');
 
-  return done(action === 'approve' ? 'approved' : 'dismissed');
+  return done(a === 'approve' ? 'approved' : 'dismissed');
 });

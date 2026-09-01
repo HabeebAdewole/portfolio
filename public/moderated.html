@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Log — moderated</title>
+
+    <!--
+      Where the Telegram buttons land.
+
+      The moderate edge function does the work and then redirects here, because
+      the Supabase functions gateway rewrites Content-Type to text/plain and
+      sends nosniff with it — an HTML response from the function renders as
+      source, not as a page. Served from GitHub Pages instead, it is just a
+      page, and it gets the site's own type into the bargain.
+
+      Nothing is decided here. By the time this loads, the row has already been
+      updated. This only reports which of a fixed set of outcomes happened.
+    -->
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+      @font-face {
+        font-family: 'Crete Round';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/creteround-latin.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Alegreya Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        size-adjust: 108%;
+        src: url('/fonts/alegreyasans-400-latin.woff2') format('woff2');
+      }
+
+      :root {
+        --ground: #e6e8e3;
+        --panel: #eff1ec;
+        --ink: #16191a;
+        --muted: #575c58;
+        --rule: #b9beb7;
+        --mark: #1f4fa8;
+        --data: #7a4e0b;
+        --mono: Consolas, 'SF Mono', 'DejaVu Sans Mono', 'Courier New', monospace;
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ground: #121412;
+          --panel: #1a1d1a;
+          --ink: #e6e8e1;
+          --muted: #8d9289;
+          --rule: #3a3f38;
+          --mark: #7fa6f0;
+          --data: #d9a85c;
+          color-scheme: dark;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: var(--ground);
+        color: var(--ink);
+        font-family: 'Alegreya Sans', 'Segoe UI', system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        width: 100%;
+        max-width: 42ch;
+        background: var(--panel);
+        border: 1px solid var(--rule);
+        padding: 30px 28px 32px;
+      }
+      .key {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-family: 'Crete Round', Georgia, serif;
+        font-weight: 400;
+        font-size: 1.75rem;
+        line-height: 1.2;
+      }
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .bad h1 {
+        color: var(--data);
+      }
+      a {
+        display: inline-block;
+        margin-top: 22px;
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        color: var(--mark);
+        border: 1px solid var(--mark);
+        padding: 10px 14px;
+        min-height: 44px;
+      }
+      a:hover,
+      a:focus-visible {
+        background: var(--mark);
+        color: var(--ground);
+      }
+      a:focus-visible {
+        outline: 2px solid var(--mark);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="out">
+      <span class="key">Log &middot; 05</span>
+      <h1 id="t">Working…</h1>
+      <p id="d"></p>
+      <a href="/#log">Back to the board</a>
+    </main>
+
+    <script>
+      /* A fixed set. The parameter selects a message, it never supplies one —
+         reflecting arbitrary text from a URL onto the page would be an XSS
+         hole for the sake of a status line. */
+      var OUTCOMES = {
+        approved: ['Put up', 'It is on the board now. Reload the log to see it.', true],
+        dismissed: ['Dismissed', 'It stays off the board. Nothing was deleted.', true],
+        invalid: ['Link not valid', 'It has expired, or it was not signed by this bot.', false],
+        gone: ['Already gone', 'That note is no longer in the table.', false],
+        error: ['That did not save', 'Supabase refused the update. Try again shortly.', false],
+      };
+
+      var r = new URLSearchParams(location.search).get('r') || '';
+      var o = Object.prototype.hasOwnProperty.call(OUTCOMES, r) ? OUTCOMES[r] : OUTCOMES.invalid;
+
+      document.getElementById('t').textContent = o[0];
+      document.getElementById('d').textContent = o[1];
+      document.title = 'Log — ' + o[0];
+      if (!o[2]) document.getElementById('out').className = 'bad';
+    </script>
+  </body>
+</html>
