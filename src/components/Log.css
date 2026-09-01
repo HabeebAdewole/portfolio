@@ -5,24 +5,22 @@
    the rest of the page. Type is untouched: prose is --sans, metadata is --mono,
    and --hand appears on signatures only.
 
+   The board itself is gone: the section now sits on --ground like everything
+   else, so the notes read as paper pinned to the page rather than to a slab.
+
    Colours are measured, not eyeballed (light / dark):
      note ink on paper      12.96 / 11.25   needs 4.5
      date on paper           4.88 /  4.76   needs 4.5
      signature on paper      7.48 /  6.68   needs 4.5
-     paper against board     4.52 /  3.26   needs 3.0
-   In light the paper carries that last one on its fill. In dark it cannot —
-   a warm card on a near-black ground is only 1.21 — so the border carries it
-   instead, exactly as --edge does elsewhere on the site.
+     paper edge on ground     3.27 /  3.26   needs 3.0
+   That last row is now load-bearing in BOTH themes. On the page ground the
+   paper fill separates by only 1.07 light and 1.27 dark — effectively not at
+   all — so the border is the whole boundary. Do not soften it.
    ============================================================================ */
 
-/* The frame is load-bearing in dark: there, the board can only sit a hair
-   above the page ground before it becomes a bright slab, so luminance alone
-   will not say "this is a board". The edge does. */
+/* No ground of its own — the page's. The pins and the paper do the work. */
 .board {
-  border: 1px solid var(--board-edge);
-  background: var(--board);
-  background-image: radial-gradient(circle at 28% 18%, var(--board) 0%, var(--board-2) 100%);
-  padding: 40px 26px 30px;
+  padding: 34px 0 22px;
 }
 
 /* Columns rather than grid: notes are wildly uneven in length, and a grid
@@ -67,17 +65,41 @@
   margin: 0;
 }
 
-.tape {
+/* A pushpin, not tape. The dome is one radial-gradient highlight over a flat
+   colour; the inset shadow at the bottom is what stops it reading as a sticker.
+
+   Colours cycle every 5 while the rotations cycle every 4, so a note only
+   repeats the same pin-and-angle pairing every 20 — the wall keeps looking
+   accidental as it fills up, which is the whole point of a pinboard. */
+.pin {
   position: absolute;
-  top: -10px;
+  top: -7px;
   left: 50%;
-  width: 76px;
-  height: 21px;
-  margin-left: -38px;
-  background: var(--tape);
-  border-left: 1px solid rgba(0, 0, 0, 0.07);
-  border-right: 1px solid rgba(0, 0, 0, 0.07);
-  transform: rotate(-1.6deg);
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 48%),
+    var(--pin, var(--pin-1));
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, 0.4),
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.3);
+}
+.scrap:nth-child(5n + 1) {
+  --pin: var(--pin-1);
+}
+.scrap:nth-child(5n + 2) {
+  --pin: var(--pin-2);
+}
+.scrap:nth-child(5n + 3) {
+  --pin: var(--pin-3);
+}
+.scrap:nth-child(5n + 4) {
+  --pin: var(--pin-4);
+}
+.scrap:nth-child(5n + 5) {
+  --pin: var(--pin-5);
 }
 
 /* The carve-out: a hand, for signatures only. Never for the note. */
@@ -266,7 +288,7 @@
    than looking like a rendering mistake. */
 @media (max-width: 700px) {
   .board {
-    padding: 30px 18px 20px;
+    padding: 26px 0 18px;
   }
   .scraps {
     columns: 1;

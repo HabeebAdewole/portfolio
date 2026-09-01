@@ -85,12 +85,26 @@ not built, because it is speculative until it isn't.
   `@supabase/supabase-js` (~40 kB gzipped for a query builder this does not
   need). Same reasoning that kept MDX out of `richText.tsx`.
 
-**Measured in the live DOM, both themes** (light / dark): note ink on paper
-12.96 / 11.89, date on paper 4.88 / 4.76, signature on paper 7.48 / 6.68,
-card boundary against board 4.52 / 3.26. In dark the paper cannot carry the 3:1
-on fill — a warm card on a near-black ground is 1.21 — so the **border** carries
-it, as `--edge` does elsewhere. The board also gets a frame, because on a dark
-page a board cannot be brightened enough to read as one without becoming a slab.
+**Redesigned 2026-09-01, at his request:**
+- **The board is gone.** The section sits on `--ground` like every other
+  section — notes are pinned to the page, not to a slab. `--board`,
+  `--board-2` and `--board-edge` were deleted.
+- ⚠️ **The paper border is now load-bearing in BOTH themes.** On the page
+  ground the fill separates by 1.07 light and 1.27 dark — effectively not at
+  all. `--paper-edge` measures 3.27 / 3.26 against `--ground` and is the whole
+  card boundary. **Do not soften it**; there is nothing behind it.
+- **Pushpins replaced the tape**, cycling five colours. Pin colours cycle every
+  5 while rotations cycle every 4, so a pairing repeats only every 20 notes —
+  the wall keeps looking accidental as it fills.
+- Ink/date/signature ratios are unchanged: 12.96 / 11.89, 4.88 / 4.76,
+  7.48 / 6.68.
+
+⚠️ **The site now defaults to LIGHT, not to the visitor's OS** (2026-09-01).
+`index.html` stamps `data-theme` before first paint; a saved choice still wins.
+`useTheme` no longer listens to `prefers-color-scheme` — there is nothing to
+follow. The media query in `tokens.css` survives only as a no-JS fallback.
+`public/moderated.html` reads the same `localStorage` key, so the Telegram
+confirmation lands in whichever theme he is actually using.
 
 `verify` and `verify:motion` pass in both states: zero overflow at five widths,
 no target under 44px, no heading skips.
