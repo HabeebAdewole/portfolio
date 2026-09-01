@@ -20,6 +20,20 @@
     -->
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Same origin as the site, so this reads the same saved choice and lands
+         in the theme he is actually using. Light unless he picked dark — the
+         OS is not consulted, matching index.html. -->
+    <script>
+      (function () {
+        var t = 'light';
+        try {
+          var s = localStorage.getItem('theme');
+          if (s === 'dark' || s === 'light') t = s;
+        } catch (e) {}
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
     <style>
       @font-face {
         font-family: 'Crete Round';
@@ -48,17 +62,15 @@
         --mono: Consolas, 'SF Mono', 'DejaVu Sans Mono', 'Courier New', monospace;
         color-scheme: light;
       }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --ground: #121412;
-          --panel: #1a1d1a;
-          --ink: #e6e8e1;
-          --muted: #8d9289;
-          --rule: #3a3f38;
-          --mark: #7fa6f0;
-          --data: #d9a85c;
-          color-scheme: dark;
-        }
+      :root[data-theme='dark'] {
+        --ground: #121412;
+        --panel: #1a1d1a;
+        --ink: #e6e8e1;
+        --muted: #8d9289;
+        --rule: #3a3f38;
+        --mark: #7fa6f0;
+        --data: #d9a85c;
+        color-scheme: dark;
       }
 
       * {

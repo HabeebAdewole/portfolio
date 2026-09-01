@@ -65,7 +65,7 @@ export function Log() {
     <div className="board">
       <div className="scraps">
         <form className="scrap signer" onSubmit={onSubmit} noValidate>
-          <span className="tape" aria-hidden="true" />
+          <span className="pin" aria-hidden="true" />
 
           <div className="field">
             <label className="pkey" htmlFor="log-name">
@@ -127,7 +127,7 @@ export function Log() {
 
         {notes.map((n) => (
           <article className="scrap" key={n.id}>
-            <span className="tape" aria-hidden="true" />
+            <span className="pin" aria-hidden="true" />
             <p>{n.body}</p>
             <span className="sig">{n.name}</span>
             <span className="pwhen m">{when(n.created_at)}</span>
