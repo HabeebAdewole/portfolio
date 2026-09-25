@@ -2,6 +2,7 @@ node_modules
 dist
 dist-ssg
 .claude
+.codex
 .impeccable
 .kombai
 .plans
