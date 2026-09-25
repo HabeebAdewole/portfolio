@@ -527,3 +527,7 @@ STATE.md knowing; meta URLs repointed, deploy and domain sections rewritten.
 Goal: add the deployed FORM frontend demo after Tracer. Use existing entry styling, homepage screenshot, accurate scope and live/repository links. Plan: .plans/form-project-plan.md. Existing VectoGen phase stays deferred.
 
 Verified: build passed; existing verify script passed against 127.0.0.1 (localhost resolved to another project). Five widths had no overflow or undersized targets; screenshot and both FORM links checked. Completed FORM addition; VectoGen remains the next existing phase.
+
+## Portfolio selection — 2026-09-25
+User requested removing VectoGen and Latex Fabrics from public work. Removed both entries and renumbered the five remaining projects. This supersedes the planned VectoGen portfolio embed; do not re-add without request. Plan: .plans/project-selection-plan.md.
+Verified: production build passed; browser shows five projects numbered 01.1 through 01.5, with neither removed project present. Publishing via main.
