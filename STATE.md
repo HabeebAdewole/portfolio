@@ -522,3 +522,8 @@ dropped by his call in Phase 3. Do not re-propose them.**
 ## Last Session Date
 2026-08-28 — checked the live site. Host had moved to GitHub Pages on `adebola.me` without
 STATE.md knowing; meta URLs repointed, deploy and domain sections rewritten.
+
+## Current task — FORM portfolio entry (2026-09-25)
+Goal: add the deployed FORM frontend demo after Tracer. Use existing entry styling, homepage screenshot, accurate scope and live/repository links. Plan: .plans/form-project-plan.md. Existing VectoGen phase stays deferred.
+
+Verified: build passed; existing verify script passed against 127.0.0.1 (localhost resolved to another project). Five widths had no overflow or undersized targets; screenshot and both FORM links checked. Completed FORM addition; VectoGen remains the next existing phase.

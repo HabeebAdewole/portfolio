@@ -1,3 +1,4 @@
+import formHome from '../assets/shots/form-home.png';
 import opportunaHome from '../assets/shots/opportuna.png';
 import tracerAnalyze from '../assets/shots/tracer-analyze.png';
 import type { Entry } from './types';
@@ -104,8 +105,62 @@ export const projects: Entry[] = [
   },
 
   {
-    id: 'vectogen',
+    id: 'form',
     index: '01.2',
+    title: 'FORM',
+    deck: ['2026', 'Personal project', 'Gym booking frontend'],
+    body: [
+      {
+        t: 'p',
+        text:
+          'A place to explore a gym before choosing a session. Seven pages covering the ' +
+          'club, a weekly timetable, coaches and membership plans. Built with React, ' +
+          'TypeScript and Tailwind CSS, and deployed on Vercel.',
+      },
+      {
+        t: 'p',
+        text:
+          'The first design looked polished but did not feel enough like a gym. I moved ' +
+          'toward training photography, background video and more direct fitness copy. ' +
+          'The motion respects reduced-motion preferences, and videos pause offscreen.',
+      },
+      {
+        t: 'p',
+        text:
+          'Filter the schedule by day, discipline or coach. Those choices live in the URL, ' +
+          'so they survive a refresh and browser navigation. A coach profile takes you ' +
+          'straight to that coach’s sessions.',
+      },
+      {
+        t: 'p',
+        quiet: true,
+        text:
+          'This is a frontend demo with sample classes and fictional coach profiles. ' +
+          'Accounts, real bookings and payments are not implemented yet.',
+      },
+    ],
+    stack: ['react', 'typescript', 'tailwind css', 'vite', 'vercel'],
+    previews: [
+      {
+        poster: formHome,
+        w: 1440,
+        h: 900,
+        aspect: '16 / 10',
+        label: 'FORM, the club',
+        meta: 'frontend demo',
+        alt: 'FORM homepage with a strength-training video background, the headline Built through every rep, and links to the class schedule and memberships.',
+        caption: 'Explore the club, find a coach, plan a training week',
+      },
+    ],
+    actions: [
+      { label: 'Open it live', href: 'https://form-gym-alpha.vercel.app/', icon: 'external' },
+      { label: 'Repo', href: 'https://github.com/HabeebAdewole/bookish-fortnight', icon: 'github' },
+    ],
+  },
+
+  {
+    id: 'vectogen',
+    index: '01.3',
     title: 'VectoGen',
     deck: ['2026', 'Text to editable vector graphics', 'Built twice'],
     body: [
@@ -168,7 +223,7 @@ export const projects: Entry[] = [
 
   {
     id: 'opportuna',
-    index: '01.3',
+    index: '01.4',
     title: 'Opportuna',
     deck: ['2025', 'Co-founder, frontend lead', 'Internship platform'],
     body: [
@@ -227,7 +282,7 @@ export const projects: Entry[] = [
 
   {
     id: 'latex-fabrics',
-    index: '01.4',
+    index: '01.5',
     title: 'Latex Fabrics',
     deck: ['2025', 'Freelance', 'Installable storefront for a Lagos fabric retailer'],
     body: [
@@ -286,7 +341,7 @@ export const projects: Entry[] = [
 
   {
     id: 'drs',
-    index: '01.5',
+    index: '01.6',
     title: 'Departmental Receipt System',
     weight: 'slim',
     deck: ['2025', 'Frontend', 'Built for the NACOS chapter'],
@@ -305,7 +360,7 @@ export const projects: Entry[] = [
 
   {
     id: 'evs',
-    index: '01.6',
+    index: '01.7',
     title: 'Electronic Voting System',
     weight: 'slim',
     deck: ['2025', 'Commissioned as president', 'NACOS chapter elections'],
