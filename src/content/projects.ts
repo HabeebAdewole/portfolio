@@ -159,71 +159,8 @@ export const projects: Entry[] = [
   },
 
   {
-    id: 'vectogen',
-    index: '01.3',
-    title: 'VectoGen',
-    deck: ['2026', 'Text to editable vector graphics', 'Built twice'],
-    body: [
-      {
-        t: 'p',
-        text:
-          'Type a prompt, get an editable SVG back. The first build used the good tools. ' +
-          'Stability AI for generation, Vectorizer.AI for the trace, Supabase holding the ' +
-          'result. One flow, no manual step in the middle.',
-      },
-      {
-        t: 'p',
-        text:
-          'Then I built it again with no external AI in it, to see whether I could. An intent ' +
-          'parser in scikit-learn, an SVG assembly engine, and a variation system, all mine, ' +
-          'served from a FastAPI microservice.',
-      },
-      {
-        t: 'pull',
-        text:
-          'The first one makes better pictures. The second one taught me what the first one ' +
-          'was doing.',
-      },
-    ],
-    panels: [
-      {
-        kind: 'comparison',
-        title: 'Two builds',
-        corner: 'Same product',
-        columns: ['Build', 'Generation path'],
-        rows: [
-          { label: 'v1, with APIs', value: 'stability ai → vectorizer.ai', fill: null, lead: true },
-          { label: 'v2, no APIs', value: 'sklearn parser → svg engine', fill: null },
-        ],
-      },
-    ],
-    stack: [
-      'next.js 14',
-      'typescript',
-      'supabase',
-      'stability ai',
-      'vectorizer.ai',
-      'fastapi',
-      'scikit-learn',
-    ],
-    actions: [
-      { label: 'Live, deploying', pending: true },
-      {
-        label: 'v1 repo, the API build',
-        href: 'https://github.com/HabeebAdewole/reimagined-system',
-        icon: 'github',
-      },
-      {
-        label: 'v2 repo, the self-built one',
-        href: 'https://github.com/HabeebAdewole/vectogen-v2',
-        icon: 'github',
-      },
-    ],
-  },
-
-  {
     id: 'opportuna',
-    index: '01.4',
+    index: '01.3',
     title: 'Opportuna',
     deck: ['2025', 'Co-founder, frontend lead', 'Internship platform'],
     body: [
@@ -281,67 +218,8 @@ export const projects: Entry[] = [
   },
 
   {
-    id: 'latex-fabrics',
-    index: '01.5',
-    title: 'Latex Fabrics',
-    deck: ['2025', 'Freelance', 'Installable storefront for a Lagos fabric retailer'],
-    body: [
-      {
-        t: 'p',
-        text:
-          'Brought in to work out what a fabric business actually needed before anyone wrote ' +
-          'code. Brand documentation, requirements, a design system, wireframes. The job was ' +
-          'translation. The owner knew her business and not software, and somebody had to ' +
-          'turn one into the other.',
-      },
-      {
-        t: 'p',
-        text:
-          'Then I built it. Ten routes, cart and wishlist held locally, and orders that hand ' +
-          'off to WhatsApp because that is where her customers already are. It installs to ' +
-          'the home screen and keeps working when the connection drops. In Lagos that is not ' +
-          'a nice-to-have.',
-      },
-    ],
-    panels: [
-      {
-        kind: 'facts',
-        title: 'Built',
-        corner: 'PWA',
-        items: [
-          { key: 'Routes', value: '10' },
-          { key: 'Offline', value: 'Yes' },
-          { key: 'Installable', value: 'Yes' },
-          { key: 'Checkout', value: 'WhatsApp' },
-        ],
-      },
-      {
-        kind: 'tally',
-        title: 'Delivered before any code',
-        corner: '5 documents',
-        items: [
-          'Brand documentation',
-          'Product requirements (PRD)',
-          'Functional requirements (FRD)',
-          'Design system',
-          'Wireframe specifications',
-        ],
-      },
-    ],
-    stack: ['react 19', 'typescript', 'vite', 'tailwind', 'zustand', 'vite-plugin-pwa'],
-    actions: [
-      {
-        label: 'Repo',
-        href: 'https://github.com/HabeebAdewole/latex-fabrics',
-        icon: 'github',
-      },
-      { label: 'Not deployed yet', pending: true },
-    ],
-  },
-
-  {
     id: 'drs',
-    index: '01.6',
+    index: '01.4',
     title: 'Departmental Receipt System',
     weight: 'slim',
     deck: ['2025', 'Frontend', 'Built for the NACOS chapter'],
@@ -360,7 +238,7 @@ export const projects: Entry[] = [
 
   {
     id: 'evs',
-    index: '01.7',
+    index: '01.5',
     title: 'Electronic Voting System',
     weight: 'slim',
     deck: ['2025', 'Commissioned as president', 'NACOS chapter elections'],
