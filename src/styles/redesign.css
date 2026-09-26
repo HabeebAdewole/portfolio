@@ -98,3 +98,34 @@ summary:focus-visible {outline:2px solid var(--focus);outline-offset:4px}
 .project-tags {display:flex;flex-wrap:wrap;gap:10px 16px}
 .bay dd {gap:14px 20px}
 .bay dd .stack-label {display:inline-flex;padding:0;gap:8px}
+
+/* A quiet pinboard on the same page ground. */
+.board {padding:0}
+.board-intro {display:flex;justify-content:space-between;align-items:center;gap:28px;margin-bottom:48px}
+.board-intro h2 {font:400 42px/1.2 var(--display);letter-spacing:-.025em}
+.board-intro p {font-size:20px;color:var(--muted);margin-top:16px}
+.board-intro .btn {white-space:nowrap}
+.board-preview {font-size:16px;color:var(--muted);margin:-20px 0 36px}
+.scraps {columns:3;column-gap:34px;padding:12px 8px}
+.scrap {border:1px solid color-mix(in srgb,var(--paper-ink) 12%,transparent);padding:32px 25px 24px;margin-bottom:36px;font-size:19px;line-height:1.55;box-shadow:0 3px 5px #262b2808,0 12px 24px -12px #262b2833}
+.board {--paper-a:#f4efe2;--paper-b:#e8eddf;--paper-c:#f5e5d9;--paper-ink:#353a32;--paper-meta:#626458;--paper-sig:#315e4c}
+:root[data-theme='dark'] .board {--paper-a:#303229;--paper-b:#28372c;--paper-c:#3b3029;--paper-ink:#e9e7dd;--paper-meta:#bbb9a8;--paper-sig:#b1cdb9}
+.scrap:nth-child(4n+1){transform:rotate(-1.1deg)}
+.scrap:nth-child(4n+2){transform:rotate(.8deg)}
+.scrap:nth-child(4n+3){transform:rotate(-.5deg)}
+.scrap:nth-child(4n+4){transform:rotate(1deg)}
+.scrap .sig {opacity:1;transform:none;display:block;font-size:27px;margin-top:22px}
+.scrap .pwhen {font:14px var(--sans);text-transform:none;letter-spacing:0;margin-top:8px}
+.pin {width:12px;height:12px;margin-left:-6px;top:-5px}
+.board .signer {max-width:640px;padding:28px;margin:0 0 44px;background:var(--panel);border:1px solid var(--rule);border-radius:10px;transform:none;color:var(--ink)}
+.board .pkey {font:18px var(--sans);color:var(--ink);text-transform:none;letter-spacing:0}
+.board .signer input[type='text'],.board .signer textarea {font:20px/1.5 var(--sans);color:var(--ink);border:1px solid var(--edge);border-radius:5px;background:var(--ground);padding:10px 12px}
+.board .signer textarea {min-height:130px}
+.board .signer input::placeholder,.board .signer textarea::placeholder {color:var(--muted)}
+.board .send {font:18px var(--sans);text-transform:none;letter-spacing:0;width:auto;border-radius:6px;background:var(--ink);color:var(--ground);border-color:var(--ink);padding:12px 24px}
+.board .held,.board .pcount {font:16px var(--sans);color:var(--muted)}
+.board .held strong {color:var(--ink)}
+.board-empty {font:20px var(--sans);letter-spacing:0;text-transform:none;color:var(--muted);padding:40px 0;text-align:left}
+@media(max-width:900px){.scraps{columns:2}}
+@media(max-width:700px){.board-intro{display:block;margin-bottom:32px}.board-intro h2{font-size:35px}.board-intro .btn{margin-top:24px}.scraps{columns:1;padding:10px 5px}.board .signer{padding:22px}.scrap{margin-bottom:30px}}
+.scraps .scrap {display:inline-block;width:100%;vertical-align:top;overflow-wrap:anywhere}

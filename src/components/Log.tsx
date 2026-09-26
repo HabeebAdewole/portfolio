@@ -3,23 +3,19 @@ import type { Signature } from '../content/types';
 import { BODY_MAX, NAME_MAX, fetchNotes, sign, when } from '../lib/log';
 import './Log.css';
 
-/* ============================================================================
-   Section 05 — the Log.
-
-   A pinboard: paper, tape, a signature in a hand. This is the one section that
-   varies surface. Type does not move — Crete Round, Alegreya Sans and mono do
-   the same jobs here as everywhere else — and Caveat is a carve-out for
-   signatures only, because a signature is content, not a type role.
-
-   Nothing a visitor writes appears here. Notes are held unapproved until he
-   puts them up, which the form says plainly rather than implying otherwise.
-   ============================================================================ */
+/** Approved notes are public; new submissions stay held for moderation. */
 
 type Status = 'idle' | 'sending' | 'held' | 'failed';
 
-export function Log() {
-  const [notes, setNotes] = useState<Signature[]>([]);
-  const [loaded, setLoaded] = useState(false);
+export function Log({ preview = false }: { preview?: boolean }) {
+  const [notes, setNotes] = useState<Signature[]>(preview ? [
+    { id: 'preview-1', name: 'A visitor', body: 'A small hello from this corner of the internet. Glad I stopped by.', created_at: '2026-09-26T12:00:00Z' },
+    { id: 'preview-2', name: 'Another visitor', body: 'There is something nice about seeing what someone is making, and how they got there.', created_at: '2026-09-26T12:00:00Z' },
+    { id: 'preview-3', name: 'A passing friend', body: 'Keep making things. See you around.', created_at: '2026-09-26T12:00:00Z' },
+  ] : []);
+  const [loaded, setLoaded] = useState(preview);
+  const [open, setOpen] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [name, setName] = useState('');
   const [body, setBody] = useState('');
   const [status, setStatus] = useState<Status>('idle');
@@ -29,23 +25,23 @@ export function Log() {
   const pot = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    if (preview) return;
     const ac = new AbortController();
     fetchNotes(ac.signal)
       .then(setNotes)
       .catch(() => {
-        /* An unreachable board is not worth an error state on a portfolio:
-           the form still works, and the section reads as simply empty. */
+        if (!ac.signal.aborted) setLoadFailed(true);
       })
       .finally(() => setLoaded(true));
     return () => ac.abort();
-  }, []);
+  }, [preview]);
 
   const over = body.trim().length > BODY_MAX;
   const ready = name.trim().length > 0 && body.trim().length > 0 && !over;
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!ready || status === 'sending') return;
+    if (preview || !ready || status === 'sending') return;
     if (pot.current?.value) return;
 
     setStatus('sending');
@@ -63,13 +59,18 @@ export function Log() {
 
   return (
     <div className="board">
-      <div className="scraps">
-        <form className="scrap signer" onSubmit={onSubmit} noValidate>
-          <span className="pin" aria-hidden="true" />
+      <div className="board-intro">
+        <div><h2 id="h-log">Leave a little note.</h2><p>A hello, a thought, or something you wanted to say.</p></div>
+        <button className="btn" type="button" aria-expanded={open} aria-controls="note-composer" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Leave a note'}</button>
+      </div>
+      {preview && <p className="board-preview">Design preview · sample notes. Sending is disabled here.</p>}
+      <div id="note-composer" hidden={!open}>
+        <form className="signer" onSubmit={onSubmit} noValidate>
+
 
           <div className="field">
             <label className="pkey" htmlFor="log-name">
-              Sign here
+              Your name
             </label>
             <input
               className="name-in"
@@ -85,7 +86,7 @@ export function Log() {
 
           <div className="field">
             <label className="pkey" htmlFor="log-body">
-              And say something
+              Your note
             </label>
             <textarea
               id="log-body"
@@ -109,22 +110,24 @@ export function Log() {
             <input id="log-url" ref={pot} type="text" tabIndex={-1} autoComplete="off" />
           </div>
 
-          <button className="send m" type="submit" disabled={!ready || status === 'sending'}>
-            {status === 'sending' ? 'Pinning…' : 'Pin it up'}
+          <button className="send m" type="submit" disabled={preview || !ready || status === 'sending'}>
+            {status === 'sending' ? 'Sending…' : 'Send note'}
           </button>
 
           <p className="held" role="status">
             {status === 'held' && (
               <>
-                <strong>Sent.</strong> It stays with him until he pins it up — which is why it has
+                <strong>Sent.</strong> I’ll read it before pinning it up — which is why it has
                 not appeared on the board.
               </>
             )}
-            {status === 'failed' && <>That did not send. Try again, or email him instead.</>}
-            {(status === 'idle' || status === 'sending') && <>Held until he reads it.</>}
+            {status === 'failed' && <>That did not send. Your draft is still here. Please try again.</>}
+            {(status === 'idle' || status === 'sending') && <>I’ll read your note before it appears on the wall.</>}
           </p>
         </form>
 
+      </div>
+      <div className="scraps">
         {notes.map((n) => (
           <article className="scrap" key={n.id}>
             <span className="pin" aria-hidden="true" />
@@ -135,9 +138,11 @@ export function Log() {
         ))}
       </div>
 
-      {loaded && notes.length === 0 && (
-        <p className="board-empty">Nobody has signed it yet. Be the first.</p>
+      {loaded && !loadFailed && notes.length === 0 && (
+        <p className="board-empty">A little space for the first hello.</p>
       )}
+      {!loaded && <p className="board-empty" role="status">Gathering the notes…</p>}
+      {loadFailed && <p className="board-empty" role="status">The notes could not load just now. You can still leave one.</p>}
     </div>
   );
 }
