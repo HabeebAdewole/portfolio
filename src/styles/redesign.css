@@ -91,3 +91,10 @@ summary:focus-visible {outline:2px solid var(--focus);outline-offset:4px}
 }
 @media(max-width:370px){.mnav{gap:4px}.mnav>a{font-size:15px}.brand{font-size:20px}.project-title{flex-wrap:wrap;gap:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.stack-label {display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.stack-label img,.stack-label svg {flex:none;width:20px;height:20px;object-fit:contain}
+.stack-label img {background:#faf9f6;border-radius:3px;padding:2px;box-sizing:content-box}
+.project-tags {display:flex;flex-wrap:wrap;gap:10px 16px}
+.bay dd {gap:14px 20px}
+.bay dd .stack-label {display:inline-flex;padding:0;gap:8px}

@@ -1,3 +1,4 @@
+import receiptPreview from '../assets/shots/departmental-receipt.jpg';
 import formHome from '../assets/shots/form-home.png';
 import opportunaHome from '../assets/shots/opportuna.png';
 import tracerAnalyze from '../assets/shots/tracer-analyze.png';
@@ -232,6 +233,12 @@ export const projects: Entry[] = [
           'integration, so there was no design handoff step at all.',
       },
     ],
+    previews: [{
+      poster: receiptPreview, w: 5760, h: 4096, aspect: '16 / 10',
+      label: 'Departmental Receipt System', meta: 'Receipt claim interface',
+      alt: 'NACOS CUAB departmental receipt claim form alongside a blue introduction panel and a mobile preview.',
+      caption: 'Submit a departmental receipt claim',
+    }],
     stack: ['react', 'typescript', 'figma mcp'],
     actions: [{ label: 'Never pushed it', pending: true }],
   },

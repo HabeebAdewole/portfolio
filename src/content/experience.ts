@@ -75,7 +75,7 @@ export const experience: Entry[] = [
     index: '02.3',
     title: 'Peer tutor',
     weight: 'slim',
-    deck: ['Crescent University', '2023 – present'],
+    deck: ['Crescent University', '2023–2026'],
     body: [
       {
         t: 'p',
