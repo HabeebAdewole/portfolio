@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { initScroll } from './lib/scroll';
+import { Work } from './components/Work';
 import { Contact } from './components/Contact';
 import { Entry } from './components/Entry';
 import { Hero } from './components/Hero';
@@ -9,20 +8,14 @@ import { Notes } from './components/Notes';
 import { SectionHeader } from './components/SectionHeader';
 import { Stack } from './components/Stack';
 import { experience } from './content/experience';
-import { projects } from './content/projects';
+
 import { sections } from './content/sections';
 import './App.css';
 
 function SectionBody({ id }: { id: string }) {
   switch (id) {
     case 'work':
-      return (
-        <>
-          {projects.map((p) => (
-            <Entry data={p} key={p.id} />
-          ))}
-        </>
-      );
+      return <Work />;
     case 'experience':
       return (
         <>
@@ -43,12 +36,7 @@ function SectionBody({ id }: { id: string }) {
 }
 
 export function App() {
-  /* Registered after paint so ScrollTrigger measures a laid-out page.
-     initScroll returns its own teardown, which matters under StrictMode's
-     double-invoke in development. */
-  useEffect(() => initScroll(), []);
-
-  return (
+return (
     <>
       <a className="skip" href="#main">
         Skip to content

@@ -531,3 +531,15 @@ Verified: build passed; existing verify script passed against 127.0.0.1 (localho
 ## Portfolio selection — 2026-09-25
 User requested removing VectoGen and Latex Fabrics from public work. Removed both entries and renumbered the five remaining projects. This supersedes the planned VectoGen portfolio embed; do not re-add without request. Plan: .plans/project-selection-plan.md.
 Verified: production build passed; browser shows five projects numbered 01.1 through 01.5, with neither removed project present. Publishing via main.
+
+## Current redesign preview — 2026-09-25
+Approved direction: spaciousness first, project cards and selective window framing, new favicon. First deliverable is a separate hero/work preview. Keep chosen fonts; old instrument rules are not constraints. Plan: .plans/redesign-preview-plan.md.
+
+Preview ready: redesign-preview.html contains the spacious hero, two real project previews and three interactive favicon choices. Desktop and mobile visually inspected; project disclosure and favicon selection verified; desktop has no horizontal overflow. Production UI remains unchanged. Awaiting design feedback before integration.
+
+Preview refinement — 2026-09-26: removed the navbar h mark; equalized project columns, top alignment and screenshot heights, including mobile.
+Favicon decision — 2026-09-26: user selected the lowercase h favicon. Keep it as the default and use it when integrating the redesign; navbar remains text-only Habeeb.
+
+Current phase goal — 2026-09-26: integrate approved spacious preview into the portfolio. Key decisions: text-only navbar, equal project cards, lowercase h favicon, retained fonts, functional note wall and CV. Plan: .plans/redesign-integration-plan.md.
+
+Last completed phase — spacious redesign integration (2026-09-26). Integrated the approved hero, text navbar, equal screenshot cards, lowercase h favicon and spacious supporting sections. Kept all five projects, detailed panels, on-demand live previews, CV and log implementation. Removed old scroll choreography so content stays visible and disclosures do not invalidate scroll measurements. Build and diff checks passed; browser checked desktop/mobile, equal card geometry, no horizontal overflow, project disclosure and theme toggle. CV HTTP 200. Limitation: local Supabase variables absent, so no live note submission tested. Current phase goal: complete locally. Next phase preview: user review and deployment when requested.
