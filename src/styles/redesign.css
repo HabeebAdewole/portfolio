@@ -1,0 +1,93 @@
+/* Approved spacious portfolio direction. Shared functionality stays in its components. */
+:root, :root[data-theme='light'] {
+  --ground:#faf9f6; --ink:#262b28; --muted:#626760; --mark:#315e4c;
+  --panel:#eef0e9; --sunk:#e8ebe3; --rule:#dedfd8; --hair:#dedfd8;
+  --focus:#315e4c; --mark-soft:#658471; --bar:#315e4c;
+}
+:root[data-theme='dark'] {
+  --ground:#171c19; --ink:#e9ebe5; --muted:#abb5aa; --mark:#9fcab0;
+  --panel:#242d26; --sunk:#1d241f; --rule:#424d44; --hair:#364038;
+  --focus:#9fcab0; --mark-soft:#829e8b; --bar:#9fcab0;
+}
+body {font-size:20px;line-height:1.55}
+a {text-underline-offset:5px}
+.wrap {width:min(1120px,calc(100% - 64px));max-width:none;padding:0}
+.masthead {position:relative; padding:34px 0; border:0; gap:20px; flex-wrap:nowrap}
+.brand {font:22px var(--display);text-decoration:none;white-space:nowrap;min-height:44px;display:flex;align-items:center}
+.mnav {gap:28px;flex-wrap:nowrap}
+.mnav>a {font-size:18px;text-decoration:none;min-height:44px;display:flex;align-items:center}
+.themebtn {border:0;margin:0;padding:10px;border-radius:50%}
+.hero {padding:120px 0 118px;max-width:820px}
+.hero h1 {font-size:clamp(48px,6.4vw,82px);line-height:1.12;letter-spacing:-.025em;margin-bottom:28px}
+.hero h1 span {color:var(--mark)}
+.hero .lede {font-size:25px;line-height:1.5;max-width:610px}
+.hero-acts {gap:24px;align-items:center;margin:34px 0 38px;font-size:18px}
+.btn {font-family:var(--sans);font-size:18px;letter-spacing:0;border-radius:7px;padding:12px 20px}
+.primary {background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.availability {display:flex;gap:10px;align-items:center;font-size:16px;color:var(--muted)}
+.availability>span {width:7px;height:7px;background:var(--mark);border-radius:50%}
+.sect {padding-top:0;margin-bottom:120px}
+.sect-hd {border:0;padding:0;margin-bottom:42px;align-items:end;justify-content:space-between;gap:24px}
+.sect-hd::after {display:none}
+.sect-name {font:400 42px/1.2 var(--display);letter-spacing:-.025em;text-transform:none}
+.sect-say {font-size:19px;max-width:310px}
+.project-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:42px;row-gap:0}
+.project-card {min-width:0;display:grid;grid-template-rows:subgrid;grid-row:span 5;padding-bottom:64px}
+.project-stage {background:var(--panel);border:1px solid var(--rule);border-radius:13px;padding:26px 24px 0;overflow:hidden}
+.stage-form {background:color-mix(in srgb,var(--ground),#b69968 16%)}
+.project-window {border:1px solid var(--rule);border-bottom:0;border-radius:7px 7px 0 0;overflow:hidden;box-shadow:0 14px 25px -14px #25392b55}
+.window-bar {height:32px;display:flex;align-items:center;gap:5px;padding:0 12px;background:var(--ground)}
+.window-bar i {width:6px;height:6px;background:var(--muted);border-radius:50%}
+.window-bar span {font:10px var(--mono);color:var(--muted);margin:auto}
+.project-window img {display:block;width:100%;height:295px;object-fit:cover;object-position:top}
+.project-title {display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:25px}
+.project-title h3 {font:400 32px/1.2 var(--display);letter-spacing:-.025em;text-wrap:initial}
+.project-title>a {display:inline-flex;align-items:center;gap:6px;font-size:17px;white-space:nowrap;min-height:44px}
+.project-description {color:var(--muted);font-size:20px;line-height:1.45;margin:13px 0 16px}
+.project-tags {font-size:15px;color:var(--muted)}
+.project-details {border-top:1px solid var(--rule);margin-top:23px;padding-top:8px;min-width:0;font-size:18px}
+.project-details summary {padding:10px 0;cursor:pointer;min-height:44px}
+summary:focus-visible {outline:2px solid var(--focus);outline-offset:4px}
+.project-text {grid-column:1 / -1;grid-row:auto;grid-template-rows:auto;border-top:1px solid var(--rule);padding:24px 0 32px}.project-text .project-description {max-width:65ch}
+.project-details .unit {margin:12px 0 0;border:0}
+.project-details .unit-hd {display:none}
+.project-details .unit-body {padding:8px 0 24px}
+.project-details .unit-ft {padding:20px 0;background:none}
+.project-details .acts {margin:0}
+.project-details .stack {display:none}
+.project-details .panel {margin-top:20px}
+.project-details .pvs {margin-top:24px}
+#experience .unit {border:0;border-top:1px solid var(--rule);background:none;margin:0;padding:30px 0}
+#experience .unit-hd {background:none;border:0;display:block;padding:0}
+#experience .unit-idx {display:none}
+#experience .unit-hd h3 {font-size:28px}
+#experience .unit-body {padding:18px 0 0}
+#experience .unit-deck {font:17px var(--sans);letter-spacing:0;text-transform:none}
+#experience .unit-ft {background:none;padding:20px 0 0;border:0}
+.bay {border:0;margin-top:0}
+.bay>div {padding:22px 0;grid-template-columns:190px 1fr}
+.bay dt,.key {font:18px var(--sans);letter-spacing:0;text-transform:none}
+.bay dd span {font:18px var(--sans);border:0;padding:0 12px 0 0}
+.creds {background:none;border:0;gap:30px;margin-top:48px}
+.creds>div {background:none;border-top:1px solid var(--rule);padding:22px 0}
+.creds .cval {font:24px var(--display)}
+.creds .cdetail {font-size:17px}
+.notes li {padding:24px 0}
+.notes .ttl {font-size:22px}
+.notes .when,.notes .go {font:16px var(--sans);letter-spacing:0;text-transform:none}
+.contact {margin-top:0;padding:70px 0 35px;border-top:1px solid var(--rule)}
+.contact h2 {font:400 42px/1.2 var(--display);max-width:none}
+.contact .row {gap:16px}
+.colophon {font:16px var(--sans);margin-top:65px}
+@media(max-width:700px) {
+ .wrap {width:calc(100% - 40px)}
+ .masthead {padding:24px 0;gap:12px}.mnav {gap:12px;width:auto}.mnav>a {font-size:16px}.nav-contact {display:none!important}
+ .hero {padding:78px 0 85px}.hero .lede {font-size:22px}
+ .sect {margin-bottom:80px}.sect-hd {display:block;margin-bottom:32px}.sect-name,.contact h2 {font-size:35px}.sect-say {margin-top:18px;max-width:none}
+ .project-grid {display:block}.project-card {display:block;padding-bottom:55px}.project-stage {padding:18px 16px 0}.project-window img {height:235px}
+ .project-title h3 {font-size:29px}.project-title>a {font-size:16px}
+ .bay>div {grid-template-columns:1fr;gap:10px}.creds {grid-template-columns:1fr;gap:22px}
+ .contact .btn {overflow-wrap:anywhere;max-width:100%}.colophon {gap:12px}
+}
+@media(max-width:370px){.mnav{gap:4px}.mnav>a{font-size:15px}.brand{font-size:20px}.project-title{flex-wrap:wrap;gap:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
