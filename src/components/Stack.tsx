@@ -1,3 +1,4 @@
+import { StackLabel } from './StackLabel';
 import { credentials, stack } from '../content/profile';
 import './Stack.css';
 
@@ -10,7 +11,7 @@ export function Stack() {
             <dt>{g.label}</dt>
             <dd>
               {g.items.map((i) => (
-                <span key={i}>{i}</span>
+                <StackLabel key={i} name={i} />
               ))}
             </dd>
           </div>

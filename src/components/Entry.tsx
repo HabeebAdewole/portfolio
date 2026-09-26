@@ -1,3 +1,4 @@
+import { StackLabel } from './StackLabel';
 import { Fragment } from 'react';
 import type { Entry as EntryData } from '../content/types';
 import { rich } from '../lib/richText';
@@ -61,7 +62,7 @@ export function Entry({ data }: { data: EntryData }) {
           {data.stack && (
             <ul className="stack">
               {data.stack.map((s) => (
-                <li key={s}>{s}</li>
+                <li key={s}><StackLabel name={s}/></li>
               ))}
             </ul>
           )}

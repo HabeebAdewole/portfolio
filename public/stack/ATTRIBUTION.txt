@@ -1,0 +1,3 @@
+Technology SVGs from Devicon v2.17.0 (https://github.com/devicons/devicon/tree/v2.17.0), MIT license.
+Brand marks belong to their respective owners. PyTorch Geometric uses the PyTorch family mark.
+REST, JWT, bcrypt and imbalanced-learn use neutral, locally authored concept icons, not invented brand logos.

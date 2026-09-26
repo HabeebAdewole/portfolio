@@ -23,7 +23,7 @@ export const profile = {
   cv: '/Adewole-Habeeb-Adebola-CV.pdf',
   cvUpdated: '2026.08',
   available: 'Open to work & freelance',
-  updated: '2026.08',
+  updated: '2026.09',
 
   /* A greeting, not a sentence about the page. Short on purpose — it is the
      one line set large enough for the face to actually be seen. */
@@ -83,12 +83,12 @@ export const credentials: Credential[] = [
   {
     key: 'Degree',
     value: 'BSc Computer Science',
-    detail: 'Crescent University Abeokuta, expected 2026',
+    detail: 'Crescent University Abeokuta, 2026',
   },
   {
     key: 'Standing',
     value: 'Second Class Upper',
-    detail: '4.27 / 5.0 cumulative, final results pending',
+    detail: '4.35 / 5.0 final CGPA',
   },
   {
     key: 'Certified',
