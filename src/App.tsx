@@ -1,3 +1,4 @@
+import { logConfigured } from './lib/log';
 import { Work } from './components/Work';
 import { Contact } from './components/Contact';
 import { Entry } from './components/Entry';
@@ -50,10 +51,11 @@ return (
 
           {sections.map((s) => (
             <section className="sect" id={s.id} key={s.id} aria-labelledby={`h-${s.id}`}>
-              <SectionHeader {...s} />
+              {s.id !== 'log' && <SectionHeader {...s} />}
               <SectionBody id={s.id} />
             </section>
           ))}
+          {import.meta.env.DEV && !logConfigured && <section className="sect" id="log" aria-labelledby="h-log"><Log preview /></section>}
         </main>
 
         <Contact />
