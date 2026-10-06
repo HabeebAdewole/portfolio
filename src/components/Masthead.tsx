@@ -9,7 +9,7 @@ export function Masthead() {
     <nav className="mnav" aria-label="Main navigation">
       <a href="#work">Work</a>
       <a className="nav-contact" href="#contact">Say hello</a>
-      <a href={profile.cv} download>Download CV</a>
+      <a href={profile.cv} target="_blank" rel="noopener noreferrer">View CV</a>
       <button className="themebtn" onClick={toggle} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}><Icon name={theme === 'dark' ? 'moon' : 'sun'} size={18}/></button>
     </nav>
   </header>;
