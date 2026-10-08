@@ -13,3 +13,8 @@ dist-ssg
 !.env.example
 node_modules/.tmp
 .vercel
+
+# Private CV documents and generated artifacts stay local.
+*.pdf
+output/
+tmp/
