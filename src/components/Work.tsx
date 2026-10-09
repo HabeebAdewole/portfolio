@@ -4,7 +4,7 @@ import { Entry } from './Entry';
 import { Icon } from './Icon';
 const descriptions: Record<string, string> = {
   tracer: 'Following the money. A Bitcoin fraud detection system that explains what led to each prediction.',
-  form: 'A place to find your next session. A gym frontend with class schedules, coaches and room to explore.',
+  form: 'A gym frontend from class discovery to member bookings and club administration.',
   opportuna: 'Connecting students with internships. Discovery, applications and dashboards for both sides of recruitment.',
   drs: 'From a paper dues book to searchable payment records and departmental receipts.',
   evs: 'Supporting chapter elections, from nomination records to results on the official portal.',

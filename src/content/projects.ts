@@ -1,5 +1,7 @@
 import receiptPreview from '../assets/shots/departmental-receipt.jpg';
 import formHome from '../assets/shots/form-home.png';
+import formMember from '../assets/shots/form-member-desktop.png';
+import formAdmin from '../assets/shots/form-admin-desktop.png';
 import opportunaHome from '../assets/shots/opportuna.png';
 import tracerAnalyze from '../assets/shots/tracer-analyze.png';
 import type { Entry } from './types';
@@ -113,31 +115,24 @@ export const projects: Entry[] = [
     body: [
       {
         t: 'p',
-        text:
-          'A place to explore a gym before choosing a session. Seven pages covering the ' +
-          'club, a weekly timetable, coaches and membership plans. Built with React, ' +
-          'TypeScript and Tailwind CSS, and deployed on Vercel.',
+        text: 'FORM explores a gym journey from finding a class to managing a training week. I designed and built the React and TypeScript frontend: public pages, a member workspace and a separate club administration interface.',
       },
       {
         t: 'p',
-        text:
-          'The first design looked polished but did not feel enough like a gym. I moved ' +
-          'toward training photography, background video and more direct fitness copy. ' +
-          'The motion respects reduced-motion preferences, and videos pause offscreen.',
+        text: 'The first design looked polished but did not feel enough like a gym. I moved toward training photography, background video and direct fitness copy. Reduced-motion preferences retain stills, and video pauses offscreen.',
       },
       {
         t: 'p',
-        text:
-          'Filter the schedule by day, discipline or coach. Those choices live in the URL, ' +
-          'so they survive a refresh and browser navigation. A coach profile takes you ' +
-          'straight to that coach’s sessions.',
+        text: 'Public schedule filters live in the URL. Members can book and cancel classes, see their remaining credits, pause or change a plan, and explore checkout outcomes. The admin schedule checks trainer and room conflicts; trainers with assigned sessions cannot be marked inactive.',
+      },
+      {
+        t: 'p',
+        text: 'I checked the production build, TypeScript and lint, then walked through booking, membership changes, checkout retries and admin validation. Verification is documented separately from business results: this project has no measured conversion or revenue claims.',
       },
       {
         t: 'p',
         quiet: true,
-        text:
-          'This is a frontend demo with sample classes and fictional coach profiles. ' +
-          'Accounts, real bookings and payments are not implemented yet.',
+        text: 'Frontend concept using fictional records and browser-local state. Member and admin datasets are independent. Account and contact forms validate locally; authentication, real reservations, email delivery and payment processing are not connected. Stock photography illustrates the training disciplines.',
       },
     ],
     stack: ['react', 'typescript', 'tailwind css', 'vite', 'vercel'],
@@ -152,9 +147,24 @@ export const projects: Entry[] = [
         alt: 'FORM homepage with a strength-training video background, the headline Built through every rep, and links to the class schedule and memberships.',
         caption: 'Explore the club, find a coach, plan a training week',
       },
+      {
+        poster: formMember, w: 1425, h: 990, aspect: '1425 / 990',
+        label: 'FORM, member workspace', meta: 'booking and membership',
+        alt: 'FORM member dashboard showing a Foundation plan, one upcoming class and three remaining credits.',
+        caption: 'A booking updates the dashboard and remaining credits',
+      },
+      {
+        poster: formAdmin, w: 1425, h: 990, aspect: '1425 / 990',
+        label: 'FORM, club administration', meta: 'seeded operational records',
+        alt: 'FORM administration overview with seeded membership, transaction and attendance summaries.',
+        caption: 'Member records, trainer assignments and a recurring schedule',
+      },
     ],
     actions: [
       { label: 'Open it live', href: 'https://form-gym-alpha.vercel.app/', icon: 'external' },
+      { label: 'Member space', href: 'https://form-gym-alpha.vercel.app/#/member', icon: 'external' },
+      { label: 'Club administration', href: 'https://form-gym-alpha.vercel.app/#/admin', icon: 'external' },
+      { label: 'Discuss a frontend project', href: 'mailto:brightopeyemi4@gmail.com' },
       { label: 'Repo', href: 'https://github.com/HabeebAdewole/bookish-fortnight', icon: 'github' },
     ],
   },
