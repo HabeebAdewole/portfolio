@@ -1,6 +1,6 @@
 const logos: Record<string, string> = {
   typescript:'typescript', javascript:'javascript', python:'python', java:'java', html:'html', css:'css',
-  react:'react', 'react 18':'react', 'next.js 14':'nextjs', vite:'vite', tailwind:'tailwind', 'tailwind css':'tailwind',
+  react:'react', 'react 18':'react', 'next.js':'nextjs', 'next.js 14':'nextjs', vite:'vite', tailwind:'tailwind', 'tailwind css':'tailwind',
   flask:'flask', fastapi:'fastapi', mysql:'mysql', supabase:'supabase', 'scikit-learn':'scikitlearn',
   pytorch:'pytorch', 'pytorch geometric':'pytorch', pandas:'pandas', numpy:'numpy',
   git:'git', pytest:'pytest', figma:'figma', 'figma mcp':'figma', playwright:'playwright', vercel:'vercel',

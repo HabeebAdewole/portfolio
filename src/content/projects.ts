@@ -1,3 +1,6 @@
+import rinjoHome from '../assets/shots/rinjo-home.png';
+import kovaHome from '../assets/shots/kova-home.png';
+import kovaWallet from '../assets/shots/kova-wallet.png';
 import receiptPreview from '../assets/shots/departmental-receipt.jpg';
 import formHome from '../assets/shots/form-home.png';
 import formMember from '../assets/shots/form-member-desktop.png';
@@ -8,8 +11,41 @@ import type { Entry } from './types';
 
 export const projects: Entry[] = [
   {
+    id: 'rinjo', index: '01.1', title: 'Rinjo',
+    deck: ['2026', 'Personal project', 'Car rental experience'],
+    body: [
+      { t: 'p', text: 'A car rental experience built around choosing the right drive. Browse the collection, compare vehicles, choose pickup and return dates, and carry those choices through a step-by-step booking flow.' },
+      { t: 'p', text: 'Built with Next.js and TypeScript, with Nigerian pickup locations, naira pricing and Google sign-in through Auth.js. The customer area brings booking details back into view after checkout.' },
+      { t: 'p', quiet: true, text: 'Portfolio demonstration. Checkout is simulated and does not charge a card or reserve a real vehicle. Fleet operations and the admin workspace are planned, not part of this release.' },
+    ],
+    stack: ['next.js', 'typescript', 'react', 'tailwind css'],
+    previews: [{ poster: rinjoHome, w: 1440, h: 900, aspect: '16 / 10', label: 'Rinjo, the collection', meta: 'car rental demo', alt: 'Rinjo car rental homepage with a vehicle-led hero and booking search.', caption: 'From choosing a car to reviewing a booking' }],
+    actions: [
+      { label: 'Open it live', href: 'https://rinjo-rental.vercel.app/', icon: 'external' },
+      { label: 'Repo', href: 'https://github.com/HabeebAdewole/curly-train', icon: 'github' },
+    ],
+  },
+  {
+    id: 'kova', index: '01.2', title: 'Kova Wallet',
+    deck: ['2026', 'Personal project', 'Mobile-first wallet demo'],
+    body: [
+      { t: 'p', text: 'A wallet experience from the first setup screen to everyday use. Create a demo wallet, set a PIN, explore assets, send and receive, swap between coins, and follow activity as simulated transfers move from pending to confirmed.' },
+      { t: 'p', text: 'React and TypeScript handle the interface, Zustand keeps wallet state on the device, and TanStack Query caches CoinGecko market prices with sample-data fallbacks. QR receiving, currency preferences, light and dark themes, and an installable PWA round out the experience.' },
+      { t: 'p', quiet: true, text: 'All balances, addresses, recovery phrases and transfers are mocked. No real keys, funds or blockchain connection. Market prices are live when available. The admin back office is still planned.' },
+    ],
+    stack: ['react', 'typescript', 'tailwind css', 'vite'],
+    previews: [
+      { poster: kovaHome, w: 1000, h: 650, aspect: '16 / 10', label: 'Kova, wallet overview', meta: 'simulated holdings', alt: 'Kova wallet overview showing a demo balance, portfolio chart, assets and send, receive and swap actions.', caption: 'A mobile-first wallet with simulated holdings and live market prices' },
+      { poster: kovaWallet, w: 430, h: 860, aspect: '1 / 1', fit: 'contain', label: 'Kova on mobile', meta: 'wallet interface', alt: 'Kova mobile wallet showing portfolio performance, asset balances and bottom navigation.', caption: 'The wallet at its intended phone size' },
+    ],
+    actions: [
+      { label: 'Open it live', href: 'https://kova-wallet.vercel.app/', icon: 'external' },
+      { label: 'Repo', href: 'https://github.com/HabeebAdewole/symmetrical-funicular', icon: 'github' },
+    ],
+  },
+  {
     id: 'tracer',
-    index: '01.1',
+    index: '01.3',
     title: 'Tracer',
     deck: ['Final year project', '2026', 'Illicit Bitcoin transaction detection'],
     body: [
@@ -109,7 +145,7 @@ export const projects: Entry[] = [
 
   {
     id: 'form',
-    index: '01.2',
+    index: '01.4',
     title: 'FORM',
     deck: ['2026', 'Personal project', 'Gym booking frontend'],
     body: [
@@ -171,7 +207,7 @@ export const projects: Entry[] = [
 
   {
     id: 'opportuna',
-    index: '01.3',
+    index: '01.5',
     title: 'Opportuna',
     deck: ['2025', 'Co-founder, frontend lead', 'Internship platform'],
     body: [
@@ -230,7 +266,7 @@ export const projects: Entry[] = [
 
   {
     id: 'drs',
-    index: '01.4',
+    index: '01.6',
     title: 'Departmental Receipt System',
     weight: 'slim',
     deck: ['2025', 'Frontend', 'Built for the NACOS chapter'],
@@ -255,7 +291,7 @@ export const projects: Entry[] = [
 
   {
     id: 'evs',
-    index: '01.5',
+    index: '01.7',
     title: 'Electronic Voting System',
     weight: 'slim',
     deck: ['2025', 'Commissioned as president', 'NACOS chapter elections'],

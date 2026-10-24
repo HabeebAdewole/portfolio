@@ -555,3 +555,7 @@ Completed: uploaded to Drive under brightopeyemi4@gmail.com; verified sharing an
 Last completed phase: CV publication, 2026-10-06. Deployment 37539401349 succeeded for commit 653cef8. Live adebola.me navbar verified as View CV pointing to the uploaded Drive resume; old public PDF URL returns HTTP 404. Current phase goal: none. Next phase preview: future CV replacements should use Drive version management to preserve this viewer URL and download restrictions.
 
 CV privacy cleanup — 2026-10-08: new resume PDFs were never committed. The old public/Adewole-Habeeb-Adebola-CV.pdf existed in historical commits; user requested removing CVs from GitHub. Purge that path from branch history and ignore PDF files, output/, and tmp/ to prevent future accidental publication. Drive remains the CV source.
+
+Current phase goal — 2026-10-24: add Rinjo and Kova Wallet to the existing project grid without redesigning it. Key decisions: real screenshots, same equal cards, factual demo scope, no admin claims. Plan: .plans/new-projects-plan.md.
+
+Completed — 2026-10-24: Rinjo and Kova added as the first equal-card row, with real screenshots, live links, stack logos and expandable project details. All five earlier entries retained and renumbered. Desktop/mobile checked: seven entries, images load, equal desktop card dimensions, details expand, no mobile overflow. Production build passed. Current phase goal: complete locally; next phase: user review and deployment when requested.

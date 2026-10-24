@@ -3,6 +3,8 @@ import { projects } from '../content/projects';
 import { Entry } from './Entry';
 import { Icon } from './Icon';
 const descriptions: Record<string, string> = {
+  rinjo: 'Find the right drive. A car rental experience from vehicle discovery to a guided booking and simulated checkout.',
+  kova: 'A wallet for the everyday. Mobile-first onboarding, transfers and swaps, with simulated funds and live market prices.',
   tracer: 'Following the money. A Bitcoin fraud detection system that explains what led to each prediction.',
   form: 'A gym frontend from class discovery to member bookings and club administration.',
   opportuna: 'Connecting students with internships. Discovery, applications and dashboards for both sides of recruitment.',
@@ -14,7 +16,7 @@ export function Work() {
     const shot = p.previews?.[0];
     const live = p.actions?.find(a => a.icon === 'external' && a.href);
     return <article className={`project-card ${shot ? '' : 'project-text'}`} key={p.id}>
-      {shot && <div className={`project-stage stage-${p.id}`}><div className="project-window"><div className="window-bar" aria-hidden="true"><i/><i/><i/><span>{p.title} / {p.id === 'tracer' ? 'transaction analysis' : p.id === 'form' ? 'the club' : p.id === 'drs' ? 'receipt claims' : 'internships'}</span></div><img src={shot.poster} alt={shot.alt} loading="lazy" width={shot.w} height={shot.h}/></div></div>}
+      {shot && <div className={`project-stage stage-${p.id}`}><div className="project-window"><div className="window-bar" aria-hidden="true"><i/><i/><i/><span>{p.title} / {p.id === 'rinjo' ? 'the collection' : p.id === 'kova' ? 'the wallet' : p.id === 'tracer' ? 'transaction analysis' : p.id === 'form' ? 'the club' : p.id === 'drs' ? 'receipt claims' : 'internships'}</span></div><img src={shot.poster} alt={shot.alt} loading="lazy" width={shot.w} height={shot.h}/></div></div>}
       <div className="project-title"><h3>{p.title}</h3>{live && <a href={live.href} target="_blank" rel="noreferrer">Open project <Icon name="external" size={13}/></a>}</div>
       <p className="project-description">{descriptions[p.id]}</p>
       <p className="project-tags">{p.stack?.slice(0, 4).map(name => <StackLabel key={name} name={name}/>) || p.deck.join(' · ')}</p>
